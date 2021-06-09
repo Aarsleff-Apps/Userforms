@@ -6,6 +6,7 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
+import FormikTest from "./FormikTest";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ export default class HomePage extends Component {
           <Route exact path="/">
             <p>New and improved frontend with more frontend.</p>
           </Route>
+          <Route path='/form' component={FormikTest} />
       </Router>
     );
   }

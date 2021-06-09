@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import FormikTest from "./FormikTest";
 import HomePage from "./HomePage";
 
 export default class App extends Component {
@@ -11,6 +12,7 @@ export default class App extends Component {
     return (
       <div>
         <HomePage />
+        <FormikTest />
       </div>
     );
   }
