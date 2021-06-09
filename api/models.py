@@ -9,7 +9,7 @@ class Users(models.Model):
     job_id = models.IntegerField(null=False, default=0)
     job = models.CharField(max_length=50,default=0)
     hours = models.DecimalField(max_digits=5, decimal_places=1, default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField()
 
 
     def __str__(self):
