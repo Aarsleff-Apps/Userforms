@@ -23,20 +23,38 @@ html, body {
     height: 100%;
     display: flex;
     align-items: center;
-    background: #4261cf;
-    background: -moz-linear-gradient(45deg, #3023ae 0%, #53a0fd 100%);
-    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #3023ae), color-stop(100%, #53a0fd));
-    background: -webkit-linear-gradient(45deg, #3023ae 0%, #53a0fd 100%);
-    background: -o-linear-gradient(45deg, #3023ae 0%, #53a0fd 100%);
-    background: -ms-linear-gradient(45deg, #3023ae 0%, #53a0fd 100%);
-    background: linear-gradient(45deg, #3023ae 0%, #53a0fd 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-start', endColorstr='$gradient-end',GradientType=1 );
+    background-color: #fafafa;
     color: white;
+    align-items: center;
+    justify-content: center;
+    display: flexbox;
 }
 
 
-
-div {
-    align-items: center;
+.d1 {
+    width: 25rem;
+    height: 35rem;
+    background-color: rgb(247, 247, 247);
+    border-radius: 5px;
     justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px 9px 2px rgba(0,0,0,0.48);
+    -webkit-box-shadow: 0px 1px 9px 2px rgba(0,0,0,0.48);
+    -moz-box-shadow: 0px 1px 9px 2px rgba(0,0,0,0.48);
+  }
+
+
+h1 {
+
+    color: black;
+}
+
+
+.spacer {
+    height: 1.2rem;
+}
+
+.dateStyle {
+    
+    width: 300;
 }

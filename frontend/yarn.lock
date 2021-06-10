@@ -1910,6 +1910,11 @@
   dependencies:
     "semver" "^6.0.0"
 
+"material-ui-colors@^1.0.0":
+  "integrity" "sha512-3VqwlQrWIs9vP4hsV9Zj9wLGlb1tSBidzX5HCk6EKH/B2dsIYFuTQivmn3QpBvukod/K1vFh+fHxJVsfYM1JgQ=="
+  "resolved" "https://registry.npmjs.org/material-ui-colors/-/material-ui-colors-1.0.0.tgz"
+  "version" "1.0.0"
+
 "merge-stream@^2.0.0":
   "integrity" "sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w=="
   "resolved" "https://registry.npmjs.org/merge-stream/-/merge-stream-2.0.0.tgz"

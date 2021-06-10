@@ -79,6 +79,8 @@ WSGI_APPLICATION = 'userforms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        'USER': 'mydb',
+        'PASSWORD': '123123',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }

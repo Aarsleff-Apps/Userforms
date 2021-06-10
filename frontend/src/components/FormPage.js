@@ -5,17 +5,38 @@ import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
+
 const useStyles = makeStyles({
-  field: {
-    maxWidth: 350,
-    boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
-    backgroundColor: "#fafafa",
-    
-  },
+
   btn: {
-    height: 100,
-    width: 350,
+    background: '#1F85DE',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    margin: '-50%',
+    padding: '0 30px',
   },
+  field: {
+    // border: 0,
+    // textAlign: 'center',
+    // color: 'white',
+    // height: 1,
+     width: '100%',
+    // margin: 7,
+    // padding: '1.55rem'
+  },
+  fieldContainer: {
+    display: 'flexbox',
+    justifyContent: 'center',
+    padding: '2rem'
+  },
+  dateStyle: {
+    width: '180px',
+
+  }
+
 });
 
 
@@ -31,6 +52,7 @@ const validationSchema = Yup.object({
     .max(15, "Must be 15 char or less")
     .required("Required"),
   hours: Yup.string().required("Required"),
+  date: Yup.date().required("Required"),
   specialPower: Yup.string().oneOf(
     ["flight", "invisibility", "wealthy bat guy", "other"],
     "Invalid special power"
@@ -45,6 +67,7 @@ const FormPage = () => {
       jobID: "",
       job: "",
       hours: "",
+      date: '',
       specialPower: "",
     },
     validationSchema: validationSchema,
@@ -58,6 +81,7 @@ const FormPage = () => {
             job_id: values.jobID,
             job: values.job,
             hours: values.hours,
+            created_at: values.date
             
         })
       };
@@ -75,7 +99,7 @@ const FormPage = () => {
     <div class="d1">
       <h1>Employee Timesheets</h1>
     <form onSubmit={formik.handleSubmit} >
-      <div>
+      <div class={classes.fieldContainer} >
         <TextField
           className = {classes.field}
           label="Employee ID"
@@ -87,6 +111,7 @@ const FormPage = () => {
           error={formik.touched.employeeID && Boolean(formik.errors.employeeID)}
           helperText={formik.touched.employeeID && formik.errors.employeeID}
         />
+        <div className="spacer" />
 
         <TextField
           className = {classes.field}
@@ -101,6 +126,7 @@ const FormPage = () => {
           onChange={formik.handleChange}
           helperText={formik.touched.employeeName && formik.errors.employeeName}
         />
+        <div className="spacer" />
         <TextField
           className = {classes.field}
           label="Job ID"
@@ -112,6 +138,7 @@ const FormPage = () => {
           onChange={formik.handleChange}
           helperText={formik.touched.jobID && formik.errors.jobID}
         />
+        <div className="spacer" />
         <TextField
           className = {classes.field}
           label="Job Name"
@@ -123,6 +150,7 @@ const FormPage = () => {
           onChange={formik.handleChange}
           helperText={formik.touched.job && formik.errors.job}
         />
+        <div className="spacer" />
         <TextField
           className = {classes.field}
           label="Hours"
@@ -134,8 +162,22 @@ const FormPage = () => {
           onChange={formik.handleChange}
           helperText={formik.touched.hours && formik.errors.hours}
         />
+        <div className="spacer" />
+      
+        <div className="dateStyle">
+        <TextField
+          className = {classes.field}
+          // label="date"
+          name="date"
+          type="date"
+          value={formik.values.date}
+          error={formik.touched.date && Boolean(formik.errors.date)}
+          onChange={formik.handleChange}
+          // helperText={formik.touched.date && formik.errors.date}
+        />
+        </div>
       </div>
-      <Button type="submit" color="secondary" className = {classes.btn}>Submit</Button>
+      <Button type="submit" color="primary" className = {classes.btn}>Submit</Button>
     </form>
     </div>
   );
