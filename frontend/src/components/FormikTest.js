@@ -105,14 +105,14 @@ handleHours(e)  {
             specialPower: Yup.string()
               .oneOf(['flight', 'invisibility', 'wealthy bat guy', 'other'], 'Invalid special power')
           })}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-                console.log(JSON.stringify(values,null,2));
-                resetForm();
-                setSubmitting(false);
-            }}
+            // onSubmit={(values, { setSubmitting, resetForm }) => {
+            //     console.log(JSON.stringify(values,null,2));
+            //     resetForm();
+            //     setSubmitting(false);
+            // }}
           >
             {props => (
-              <Form onSubmit={this.handleFormButtonPressed}>
+              <Form onSubmit={this.handleFormButtonPressed.bind(this)}>
                 <h1>Timesheet</h1>
                 <TextField label="Employee ID" name="employeeID" type="text" placeholder="1234" onChange={this.handleEmployeeIDChange.bind(this)}/>
                 <TextField label="Employee Name" name="employeeName" type="text" placeholder="frank" onChange={this.handleEmployeeNameChange.bind(this)} />
@@ -126,7 +126,7 @@ handleHours(e)  {
                   <option value="wealthy bat guy">wealthy bat guy</option>
                   <option value="other">other</option>
                 </CustomSelect> */}
-                {/* <button type="submit" onClick={this.handleFormButtonPressed.bind(this)}>{props.isSubmitting ? 'Loading...' : 'Submit'}</button> */}
+                <Button type="submit">{props.isSubmitting ? 'Loading...' : 'Submit'}</Button>
               </Form>
             )}
         </Formik>
