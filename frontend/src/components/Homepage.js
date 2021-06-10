@@ -7,6 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import FormPage from "./FormPage";
+import SalaryPage from "./SalaryPage";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -16,9 +17,8 @@ export default class HomePage extends Component {
   render() {
     return (
       <Router>
-          <Route exact path="/">
-          </Route>
-          <Route path='/form' component={FormPage} />
+          <Route exact path='/form' component={FormPage} />
+          <Route exact path='/salary' component={SalaryPage} />
       </Router>
     );
   }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import FormPage from "./FormPage";
 import HomePage from "./HomePage";
+import SalaryPage from "./SalaryPage";
 
 export default class App extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class App extends Component {
       <div>
         <HomePage />
         <FormPage />
+        <SalaryPage />
       </div>
     );
   }

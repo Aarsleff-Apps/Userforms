@@ -3,6 +3,14 @@ from django.core.exceptions import ValidationError
 
 # Create your models here.
 
+class Salary(models.Model):
+    employee_id = models.IntegerField(null=False, default=0)
+    employee = models.CharField(max_length=50,default=0)
+    salary_weekly = models.IntegerField(default=0)
+    created_at = models.DateField(auto_now_add=True)
+
+
+
 class Users(models.Model):
     employee_id = models.IntegerField(null=False, default=0)
     employee = models.CharField(max_length=50,default=0)
@@ -23,3 +31,4 @@ class Users(models.Model):
     # def save(self, *args, **kwargs):
     #         self.full_clean()
     #         return super().save(*args, **kwargs)
+
