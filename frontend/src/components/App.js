@@ -13,8 +13,6 @@ export default class App extends Component {
     return (
       <div>
         <HomePage />
-        <FormPage />
-        <SalaryPage />
       </div>
     );
   }
