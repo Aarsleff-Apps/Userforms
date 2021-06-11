@@ -15,8 +15,8 @@ const useStyles = makeStyles({
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     color: 'white',
     height: 48,
-    margin: '-50%',
-    padding: '0 30px',
+    margin: '5%',
+    padding: '0 25%',
   },
   field: {
     // border: 0,
@@ -96,8 +96,17 @@ const FormPage = () => {
   const classes = useStyles();
 
   return (
+    <div>
+    <body class="main">
+      <header class="navbar">
+        <a href="https://www.aarsleff.co.uk/">
+          <img class ="logo" src="https://forms.aarsleff.co.uk/images/Logo.png?v=gNMJrA7Q8A" width='92px' height='51px' />
+        </a>
+      </header>
+    <div class="container">
+      <h1 class="title">Employee Timesheets</h1>
     <div class="d1">
-      <h1>Employee Timesheets</h1>
+      
     <form onSubmit={formik.handleSubmit} >
       <div class={classes.fieldContainer} >
         <TextField
@@ -180,6 +189,11 @@ const FormPage = () => {
       <Button type="submit" color="primary" className = {classes.btn}>Submit</Button>
     </form>
     </div>
+    </div>
+    </body>
+    <footer class="foot" />
+    </div>
+
   );
 };
 

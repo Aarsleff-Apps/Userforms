@@ -9,52 +9,80 @@ html, body {
     /* color: white; */
 }
 
- #main {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
+
+.main {
+
+    flex: 1 0 auto;
+    display: block;
+    position: absolute;
+}
+
+.navbar {
+
+    background-color: #fafafa;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%);
+    height: 56px;
+    overflow: hidden;
 
 }
 
-#app {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    background-color: #fafafa;
-    color: white;
-    align-items: center;
-    justify-content: center;
-    display: flexbox;
+.logo {
+
+    margin-top: 0.15%;
+
+
+}
+
+
+.container {
+
+    margin: 0 auto;
+    width: 90%;
 }
 
 
 .d1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    transform: translate(-50%, -50%);
     width: 25rem;
-    height: 35rem;
     background-color: rgb(247, 247, 247);
     border-radius: 5px;
-    justify-content: center;
-    align-items: center;
+    
     box-shadow: 0px 1px 9px 2px rgba(0,0,0,0.48);
     -webkit-box-shadow: 0px 1px 9px 2px rgba(0,0,0,0.48);
     -moz-box-shadow: 0px 1px 9px 2px rgba(0,0,0,0.48);
+    overflow:hidden;
+    flex: 1 0;
   }
 
 
-h1 {
+.title {
 
-    color: black;
+    color: #006eb1!important;
+    font-size: 3.56rem;
+    margin-top: 3%;
+    font-family: Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI",Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-weight: 300;
 }
 
 
 .spacer {
-    height: 1.2rem;
+    height: 1.4rem;
 }
 
 .dateStyle {
     
     width: 300;
 }
+
+.foot {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:10%;   /* Height of the footer */
+    background-color: #006eb1!important;
+ }
+
