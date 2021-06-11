@@ -51,7 +51,10 @@ const validationSchema = Yup.object({
     .min(3, "Must be at least 3 characters")
     .max(15, "Must be 15 char or less")
     .required("Required"),
-  hours: Yup.string().required("Required"),
+  hours: Yup.number().required("Required")
+        .min(8, "Please enter a minimum of 8 hours")
+        .max(12, "Hours must not exceed 12"),
+      
   date: Yup.date().required("Required"),
   specialPower: Yup.string().oneOf(
     ["flight", "invisibility", "wealthy bat guy", "other"],
@@ -87,7 +90,7 @@ const FormPage = () => {
       };
        fetch('api/create/', requestOptions)
              .then((response) => response.json())
-             .then(resetForm())
+            //  .then(resetForm())
              .then(setSubmitting(false));
              console.log(`submitted!!`);
     },
