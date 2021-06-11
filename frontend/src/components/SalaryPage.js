@@ -15,8 +15,8 @@ const useStyles = makeStyles({
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     color: 'white',
     height: 48,
-    margin: '-50%',
-    padding: '0 30px',
+    margin: '5%',
+    padding: '0 25%',
   },
   field: {
     // border: 0,
@@ -80,8 +80,17 @@ const SalaryPage = () => {
   const classes = useStyles();
 
   return (
+    <div>
+    <body class="main">
+      <header class="navbar">
+        <a href="https://www.aarsleff.co.uk/">
+          <img class ="logo" src="https://forms.aarsleff.co.uk/images/Logo.png?v=gNMJrA7Q8A" width='92px' height='51px' />
+        </a>
+      </header>
+    <div class="container">
+      <h1 class="title">Employee Salary</h1>
     <div class="d1">
-      <h1>Employee Salary Details</h1>
+      
     <form onSubmit={formik.handleSubmit} >
       <div class={classes.fieldContainer} >
         <TextField
@@ -115,16 +124,34 @@ const SalaryPage = () => {
           className = {classes.field}
           label="Weekly Salary"
           name="salaryWeekly"
-          type="salaryWeekly"
-          value={formik.values.job}
-          placeholder="400"
+          type="text"
+          value={formik.values.salaryWeekly}
+          placeholder="2345"
           error={formik.touched.salaryWeekly && Boolean(formik.errors.salaryWeekly)}
           onChange={formik.handleChange}
           helperText={formik.touched.salaryWeekly && formik.errors.salaryWeekly}
         />
+        <div className="spacer" />
+        
+        <div className="dateStyle">
+        <TextField
+          className = {classes.field}
+          // label="date"
+          name="date"
+          type="date"
+          value={formik.values.date}
+          error={formik.touched.date && Boolean(formik.errors.date)}
+          onChange={formik.handleChange}
+          // helperText={formik.touched.date && formik.errors.date}
+        />
+        </div>
       </div>
       <Button type="submit" color="primary" className = {classes.btn}>Submit</Button>
     </form>
+    </div>
+    </div>
+    </body>
+    <footer class="foot" />
     </div>
   );
 };
