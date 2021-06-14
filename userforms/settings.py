@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'userforms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_userform',
+        'NAME': 'userforms',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',
-        'PORT': '5433',
+        'PORT': '5432',
     }
 }
 

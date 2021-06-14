@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import FormPage from "./FormPage";
-import HomePage from "./HomePage";
-import SalaryPage from "./SalaryPage";
+import HomePage from "./Screens/HomePage";
 
 export default class App extends Component {
   constructor(props) {
