@@ -42,54 +42,60 @@ export default function TestPage() {
     setOpen(true);
   };
 
-  var jobList ={
-    job: 'John',
-    job: 'Tim',
-    job: 'Matt'
+  var data = {
+    1: "John",
+    2: "Tim",
+    3: "Matt",
   };
 
-  var data ={
-    0: 'John',
-    1: 'Tim',
-    2: 'Matt'
-  };
-  
   var newdata = Object.values(data);
   console.log(newdata);
 
-  const newDataLength = newdata.length
-  console.log(newDataLength)
+  const final = []
 
+  const newDataLength = newdata.length;
+  console.log(newDataLength);
 
+  function sayHello() {
+    console.log(jobID);
+  }
+
+  function individual() {
+    for (let job of newdata){
+        jobs.push(<li key={newdata}>{newdata}</li>)
+    }
+    return(
+        <div className="App">
+        <ul>{final}</ul>
+        </div>
+    )
+  }
 
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">
-          Employee Name
-        </InputLabel>
+        <InputLabel id="jobSelect-label">Job Name</InputLabel>
         <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
+          labelId="jobSelect-label"
+          id="jobSelect"
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={newdata}
+          value={jobID}
           onChange={handleChange}
         >
-        <MenuItem value="">
-        <em>None</em>
-      </MenuItem>
-        <div>
-        {newdata.map(newdata => (
-          <MenuItem value={10}>
-            {newdata}
+          <MenuItem value="">
+            <em>None</em>
           </MenuItem>
-        ))}
-      </div>
+          {newdata.map((newdata) => (
+            <MenuItem value={90}>{newdata}</MenuItem>
+          ))}
         </Select>
       </FormControl>
-
+      <div>{final}</div>
+      <Button type="submit" color="primary" className={classes.btn} onClick={sayHello}>
+      Submit
+    </Button>
     </div>
   );
 }
