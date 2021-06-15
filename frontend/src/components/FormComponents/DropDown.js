@@ -11,9 +11,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
     width: "100%",
+    height: "25%",
+    fontSize: 50,
+    paddingBottom: 10,
   },
 }));
 
@@ -39,8 +40,9 @@ export default function MUIDropDown(props) {
       <FormControl className={classes.formControl}>
         <InputLabel id="itemSelect-label">{props.name}</InputLabel>
         <Select
+          id="outlined-basic" 
+          variant="outlined"
           labelId="itemSelect-label"
-          id="itemSelect"
           name={props.name}
           open={open}
           onClose={handleClose}
