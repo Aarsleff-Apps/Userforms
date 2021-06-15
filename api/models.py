@@ -8,6 +8,11 @@ class Salary(models.Model):
     employee = models.CharField(max_length=50,default=0)
     salary_weekly = models.IntegerField(default=0)
     created_at = models.DateField(auto_now_add=True)
+    joining_date = models.DateField()
+    leaving_date = models.DateField()
+    car_allowance = models.IntegerField(default=0)
+    pension = models.IntegerField(default=0)
+    national_insurance = models.IntegerField(default=0)
 
 
 

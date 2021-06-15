@@ -4,7 +4,7 @@ import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { employeeValidationSchema } from "../Validation/ValidationSchema";
-import MUIDropDown from "../FormComponents/DropDown";
+import DropDown from "../FormComponents/DropDown";
 
 const useStyles = makeStyles({
   btn: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     width: "100%",
     marginTop: "5%",
     padding: "0 25%",
-    fontSize: "4rem"
+    fontSize: "4rem",
   },
   field: {
     width: "100%",
@@ -25,14 +25,11 @@ const useStyles = makeStyles({
     fontSize: "4rem",
     paddingBottom: 10,
   },
-
 });
 
-
-
 const validationSchema = employeeValidationSchema;
-const test = ["1", "2", "3", "4"];
-const name = "test";
+const test = ["9991", "28888", "38888", "47777"];
+const name = "employeeID";
 const nameID = "employeeID";
 
 const FormPage = () => {
@@ -60,15 +57,15 @@ const FormPage = () => {
           created_at: values.date,
         }),
       };
+
       fetch("api/create/", requestOptions)
         .then((response) => response.json())
         //  .then(resetForm())
         .then(setSubmitting(false));
-      console.log(`submitted!!`);
       console.log(values);
+      console.log(`submitted!!`);
     },
   });
-
   const classes = useStyles();
 
   return (
@@ -86,39 +83,23 @@ const FormPage = () => {
         </header>
 
         <main class="main">
-        <h1 class="title">Employee Timesheets</h1>
-        
+          <h1 class="title">Employee Timesheets</h1>
+
           <form onSubmit={formik.handleSubmit}>
             <div class={classes.fieldContainer}>
               <div className="spacer" />
 
-              <MUIDropDown data={test} name={name} id={nameID} />
-
-              <div className="spacer" />
-
-              <TextField
-              id="outlined-basic" 
-               variant="outlined"
-                className={classes.field}
-                label="Employee ID"
-                name="employeeID"
-                type="text"
-                value={formik.values.employeeID}
-                placeholder="2345"
-                error={
-                  formik.touched.employeeID && Boolean(formik.errors.employeeID)
-                }
-                onChange={formik.handleChange}
-                helperText={
-                  formik.touched.employeeID && formik.errors.employeeID
-                }
+              <DropDown
+                data={test}
+                name={name}
+                handleChange={formik.handleChange}
               />
 
               <div className="spacer" />
 
               <TextField
-              id="outlined-basic" 
-              variant="outlined"
+                id="outlined-basic"
+                variant="outlined"
                 className={classes.field}
                 label="Employee Name"
                 name="employeeName"
@@ -138,8 +119,8 @@ const FormPage = () => {
               <div className="spacer" />
 
               <TextField
-              id="outlined-basic" 
-              variant="outlined"
+                id="outlined-basic"
+                variant="outlined"
                 className={classes.field}
                 label="Job ID"
                 name="jobID"
@@ -152,8 +133,8 @@ const FormPage = () => {
               />
               <div className="spacer" />
               <TextField
-              id="outlined-basic" 
-              variant="outlined"
+                id="outlined-basic"
+                variant="outlined"
                 className={classes.field}
                 label="Job Name"
                 name="job"
@@ -166,8 +147,8 @@ const FormPage = () => {
               />
               <div className="spacer" />
               <TextField
-              id="outlined-basic" 
-              variant="outlined"
+                id="outlined-basic"
+                variant="outlined"
                 className={classes.field}
                 label="Hours"
                 name="hours"
@@ -179,12 +160,11 @@ const FormPage = () => {
                 helperText={formik.touched.hours && formik.errors.hours}
               />
               <div className="spacer" />
-              
 
               <div className="dateStyle">
                 <TextField
-                id="outlined-basic" 
-                variant="outlined"
+                  id="outlined-basic"
+                  variant="outlined"
                   className={classes.field}
                   // label="date"
                   name="date"

@@ -79,11 +79,12 @@ WSGI_APPLICATION = 'userforms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'userforms',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'NAME': 'db_userforms',
+        'USER': 'master@dev-aarsleff-001',
+        'PASSWORD': 'Chingf0rdE46DG1!',
+        'HOST': 'dev-aarsleff-001.postgres.database.azure.com',
         'PORT': '5432',
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 

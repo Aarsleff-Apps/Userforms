@@ -9,7 +9,7 @@ class UserSerializers(serializers.ModelSerializer):
 class SalarySerializers(serializers.ModelSerializer):
     class Meta:
         model = Salary
-        fields = ('id','employee_id','employee', 'salary_weekly' )
+        fields = ('id','employee_id','employee', 'salary_weekly', 'created_at', 'leaving_date', 'joining_date', 'car_allowance', 'national_insurance', 'pension')
 
 
 

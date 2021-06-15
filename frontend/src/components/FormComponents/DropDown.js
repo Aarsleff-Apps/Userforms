@@ -18,13 +18,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MUIDropDown(props) {
+export default function DropDown(props) {
   const classes = useStyles();
-  const [itemID, setItemID] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const [data, setData] = React.useState("");
 
+  console.log(data)
   const handleChange = (event) => {
-    setItemID(event.target.value);
+    setData(event.target.value);
   };
 
   const handleClose = () => {
@@ -35,6 +36,7 @@ export default function MUIDropDown(props) {
     setOpen(true);
   };
 
+  
   return (
     <div>
       <FormControl className={classes.formControl}>
@@ -47,11 +49,10 @@ export default function MUIDropDown(props) {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={itemID}
-          onChange={handleChange}
+          onChange={props.handleChange}
         >
-          {props.data.map((data) => (
-            <MenuItem value={data}>{data}</MenuItem>
+          {props.data.map((items) => (
+            <MenuItem value={items}>{items}</MenuItem>
           ))}
         </Select>
       </FormControl>
