@@ -30,7 +30,6 @@ const useStyles = makeStyles({
 const validationSchema = employeeValidationSchema;
 const test = ["9991", "28888", "38888", "47777"];
 const name = "employeeID";
-const nameID = "employeeID";
 
 const FormPage = () => {
   const formik = useFormik({
@@ -166,13 +165,11 @@ const FormPage = () => {
                   id="outlined-basic"
                   variant="outlined"
                   className={classes.field}
-                  // label="date"
                   name="date"
                   type="date"
                   value={formik.values.date}
                   error={formik.touched.date && Boolean(formik.errors.date)}
                   onChange={formik.handleChange}
-                  // helperText={formik.touched.date && formik.errors.date}
                 />
               </div>
             </div>
