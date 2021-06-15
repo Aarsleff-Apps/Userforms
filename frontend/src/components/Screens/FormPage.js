@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { employeeValidationSchema } from "../Validation/ValidationSchema";
 import MUIDropDown from "../FormComponents/DropDown";
 
-
 const useStyles = makeStyles({
   btn: {
     background: "#1F85DE",
@@ -14,24 +13,24 @@ const useStyles = makeStyles({
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
     color: "white",
-    height: 48,
-    margin: "5%",
+    height: 120,
+    width: "100%",
+    marginTop: "5%",
     padding: "0 25%",
+    fontSize: "4rem"
   },
   field: {
     width: "100%",
+    height: "25%",
+    fontSize: "4rem",
+    paddingBottom: 10,
   },
-  fieldContainer: {
-    display: "flexbox",
-    justifyContent: "center",
-    padding: "2rem",
-  },
-  dateStyle: {
-    width: "180px",
-  },
+
 });
 
-const validationSchema = employeeValidationSchema
+
+
+const validationSchema = employeeValidationSchema;
 const test = ["1", "2", "3", "4"];
 const name = "test";
 const nameID = "employeeID";
@@ -66,17 +65,16 @@ const FormPage = () => {
         //  .then(resetForm())
         .then(setSubmitting(false));
       console.log(`submitted!!`);
-      console.log(values)
+      console.log(values);
     },
   });
 
-const classes = useStyles() 
-
+  const classes = useStyles();
 
   return (
-    <div>
-      <body class="main">
-        <header class="navbar">
+    <body>
+      <div class="grid-container">
+        <header class="header">
           <a href="https://www.aarsleff.co.uk/">
             <img
               class="logo"
@@ -86,20 +84,21 @@ const classes = useStyles()
             />
           </a>
         </header>
-        <div class="container">
-          <h1 class="title">Employee Timesheets</h1>
-          <div class="d1">
-            <form onSubmit={formik.handleSubmit}>
-              <div class={classes.fieldContainer}>
-                <div className="spacer" />
 
+        <main class="main">
+        <h1 class="title">Employee Timesheets</h1>
+        
+          <form onSubmit={formik.handleSubmit}>
+            <div class={classes.fieldContainer}>
+              <div className="spacer" />
 
+              <MUIDropDown data={test} name={name} id={nameID} />
 
-                <MUIDropDown data={test} name={name} id={nameID} />
+              <div className="spacer" />
 
-                <div className="spacer" />
-
-                <TextField
+              <TextField
+              id="outlined-basic" 
+               variant="outlined"
                 className={classes.field}
                 label="Employee ID"
                 name="employeeID"
@@ -107,8 +106,7 @@ const classes = useStyles()
                 value={formik.values.employeeID}
                 placeholder="2345"
                 error={
-                  formik.touched.employeeID &&
-                  Boolean(formik.errors.employeeID)
+                  formik.touched.employeeID && Boolean(formik.errors.employeeID)
                 }
                 onChange={formik.handleChange}
                 helperText={
@@ -116,86 +114,96 @@ const classes = useStyles()
                 }
               />
 
-                <div className="spacer" />
+              <div className="spacer" />
 
-                <TextField
-                  className={classes.field}
-                  label="Employee Name"
-                  name="employeeName"
-                  type="text"
-                  value={formik.values.employeeName}
-                  placeholder="2345"
-                  error={
-                    formik.touched.employeeName &&
-                    Boolean(formik.errors.employeeName)
-                  }
-                  onChange={formik.handleChange}
-                  helperText={
-                    formik.touched.employeeName && formik.errors.employeeName
-                  }
-                />
+              <TextField
+              id="outlined-basic" 
+              variant="outlined"
+                className={classes.field}
+                label="Employee Name"
+                name="employeeName"
+                type="text"
+                value={formik.values.employeeName}
+                placeholder="2345"
+                error={
+                  formik.touched.employeeName &&
+                  Boolean(formik.errors.employeeName)
+                }
+                onChange={formik.handleChange}
+                helperText={
+                  formik.touched.employeeName && formik.errors.employeeName
+                }
+              />
 
-                <div className="spacer" />
+              <div className="spacer" />
 
-                <TextField
-                  className={classes.field}
-                  label="Job ID"
-                  name="jobID"
-                  type="text"
-                  value={formik.values.jobID}
-                  placeholder="2345"
-                  error={formik.touched.jobID && Boolean(formik.errors.jobID)}
-                  onChange={formik.handleChange}
-                  helperText={formik.touched.jobID && formik.errors.jobID}
-                />
-                <div className="spacer" />
-                <TextField
-                  className={classes.field}
-                  label="Job Name"
-                  name="job"
-                  type="text"
-                  value={formik.values.job}
-                  placeholder="Geo"
-                  error={formik.touched.job && Boolean(formik.errors.job)}
-                  onChange={formik.handleChange}
-                  helperText={formik.touched.job && formik.errors.job}
-                />
-                <div className="spacer" />
-                <TextField
-                  className={classes.field}
-                  label="Hours"
-                  name="hours"
-                  type="text"
-                  value={formik.values.hours}
-                  placeholder="8"
-                  error={formik.touched.hours && Boolean(formik.errors.hours)}
-                  onChange={formik.handleChange}
-                  helperText={formik.touched.hours && formik.errors.hours}
-                />
-                <div className="spacer" />
+              <TextField
+              id="outlined-basic" 
+              variant="outlined"
+                className={classes.field}
+                label="Job ID"
+                name="jobID"
+                type="text"
+                value={formik.values.jobID}
+                placeholder="2345"
+                error={formik.touched.jobID && Boolean(formik.errors.jobID)}
+                onChange={formik.handleChange}
+                helperText={formik.touched.jobID && formik.errors.jobID}
+              />
+              <div className="spacer" />
+              <TextField
+              id="outlined-basic" 
+              variant="outlined"
+                className={classes.field}
+                label="Job Name"
+                name="job"
+                type="text"
+                value={formik.values.job}
+                placeholder="Geo"
+                error={formik.touched.job && Boolean(formik.errors.job)}
+                onChange={formik.handleChange}
+                helperText={formik.touched.job && formik.errors.job}
+              />
+              <div className="spacer" />
+              <TextField
+              id="outlined-basic" 
+              variant="outlined"
+                className={classes.field}
+                label="Hours"
+                name="hours"
+                type="text"
+                value={formik.values.hours}
+                placeholder="8"
+                error={formik.touched.hours && Boolean(formik.errors.hours)}
+                onChange={formik.handleChange}
+                helperText={formik.touched.hours && formik.errors.hours}
+              />
+              <div className="spacer" />
+              
 
-                <div className="dateStyle">
-                  <TextField
-                    className={classes.field}
-                    // label="date"
-                    name="date"
-                    type="date"
-                    value={formik.values.date}
-                    error={formik.touched.date && Boolean(formik.errors.date)}
-                    onChange={formik.handleChange}
-                    // helperText={formik.touched.date && formik.errors.date}
-                  />
-                </div>
+              <div className="dateStyle">
+                <TextField
+                id="outlined-basic" 
+                variant="outlined"
+                  className={classes.field}
+                  // label="date"
+                  name="date"
+                  type="date"
+                  value={formik.values.date}
+                  error={formik.touched.date && Boolean(formik.errors.date)}
+                  onChange={formik.handleChange}
+                  // helperText={formik.touched.date && formik.errors.date}
+                />
               </div>
-              <Button type="submit" color="primary" className={classes.btn}>
-                Submit
-              </Button>
-            </form>
-          </div>
-        </div>
-      </body>
-      <footer class="foot" />
-    </div>
+            </div>
+            <Button type="submit" color="primary" className={classes.btn}>
+              Submit
+            </Button>
+          </form>
+        </main>
+        <footer class="footer">All right reserved.</footer>
+      </div>
+    </body>
   );
 };
 
