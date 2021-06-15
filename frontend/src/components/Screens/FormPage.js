@@ -1,9 +1,11 @@
-import * as Yup from "yup";
 import React, { Component } from "react";
 import { Formik, useFormik } from "formik";
 import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { employeeValidationSchema } from "../Validation/ValidationSchema";
+import MUIDropDown from "../FormComponents/DropDown";
+
 
 const useStyles = makeStyles({
   btn: {
@@ -17,13 +19,7 @@ const useStyles = makeStyles({
     padding: "0 25%",
   },
   field: {
-    // border: 0,
-    // textAlign: 'center',
-    // color: 'white',
-    // height: 1,
     width: "100%",
-    // margin: 7,
-    // padding: '1.55rem'
   },
   fieldContainer: {
     display: "flexbox",
@@ -35,28 +31,10 @@ const useStyles = makeStyles({
   },
 });
 
-const validationSchema = Yup.object({
-  // employeeID: Yup.number().required("Required"),    //commented code requires validation based on list rather than entry by user.
-  employeeName: Yup.string()
-    .min(3, "Must be at least 3 characters")
-    .max(15, "Must be 15 char or less")
-    .required("Required"),
-  jobID: Yup.number().required("Required"),
-  // job: Yup.string()
-  //   .min(3, "Must be at least 3 characters")
-  //   .max(15, "Must be 15 char or less")
-  // .required("Required"),
-  hours: Yup.number()
-    .required("Required")
-    .min(8, "Please enter a minimum of 8 hours")
-    .max(12, "Hours must not exceed 12"),
-
-  date: Yup.date().required("Required"),
-  specialPower: Yup.string().oneOf(
-    ["flight", "invisibility", "wealthy bat guy", "other"],
-    "Invalid special power"
-  ),
-});
+const validationSchema = employeeValidationSchema
+const test = ["1", "2", "3", "4"];
+const name = "test";
+const nameID = "employeeID";
 
 const FormPage = () => {
   const formik = useFormik({
@@ -88,12 +66,12 @@ const FormPage = () => {
         //  .then(resetForm())
         .then(setSubmitting(false));
       console.log(`submitted!!`);
+      console.log(values)
     },
   });
 
-  const classes = useStyles();
+const classes = useStyles() 
 
-  const jobs = [{ job: "1" }, { job: "2" }, { job: "3" }];
 
   return (
     <div>
@@ -115,8 +93,46 @@ const FormPage = () => {
               <div class={classes.fieldContainer}>
                 <div className="spacer" />
 
-                <abcd
- 
+
+
+                <MUIDropDown data={test} name={name} id={nameID} />
+
+                <div className="spacer" />
+
+                <TextField
+                className={classes.field}
+                label="Employee ID"
+                name="employeeID"
+                type="text"
+                value={formik.values.employeeID}
+                placeholder="2345"
+                error={
+                  formik.touched.employeeID &&
+                  Boolean(formik.errors.employeeID)
+                }
+                onChange={formik.handleChange}
+                helperText={
+                  formik.touched.employeeID && formik.errors.employeeID
+                }
+              />
+
+                <div className="spacer" />
+
+                <TextField
+                  className={classes.field}
+                  label="Employee Name"
+                  name="employeeName"
+                  type="text"
+                  value={formik.values.employeeName}
+                  placeholder="2345"
+                  error={
+                    formik.touched.employeeName &&
+                    Boolean(formik.errors.employeeName)
+                  }
+                  onChange={formik.handleChange}
+                  helperText={
+                    formik.touched.employeeName && formik.errors.employeeName
+                  }
                 />
 
                 <div className="spacer" />

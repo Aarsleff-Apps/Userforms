@@ -1,11 +1,11 @@
-import * as Yup from "yup";
 import React, { Component } from 'react'
 import { Formik, useFormik } from "formik";
 import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { salaryValidationSchema } from "../Validation/ValidationSchema";
 
-
+const validationSchema = salaryValidationSchema
 const useStyles = makeStyles({
 
   btn: {
@@ -19,13 +19,7 @@ const useStyles = makeStyles({
     padding: '0 25%',
   },
   field: {
-    // border: 0,
-    // textAlign: 'center',
-    // color: 'white',
-    // height: 1,
      width: '100%',
-    // margin: 7,
-    // padding: '1.55rem'
   },
   fieldContainer: {
     display: 'flexbox',
@@ -36,17 +30,6 @@ const useStyles = makeStyles({
     width: '180px',
 
   }
-
-});
-
-
-const validationSchema = Yup.object({
-  employeeID: Yup.number().required("Required"),
-  employeeName: Yup.string()
-    .min(3, "Must be at least 3 characters")
-    .max(15, "Must be 15 char or less")
-    .required("Required"),
-  salaryWeekly: Yup.number().required("Required"),
 
 });
 

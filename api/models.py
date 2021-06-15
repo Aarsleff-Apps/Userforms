@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 # Create your models here.
 
 class Salary(models.Model):
-    employee_id = models.IntegerField(null=False, default=0)
+    employee_id = models.IntegerField(default=0)
     employee = models.CharField(max_length=50,default=0)
     salary_weekly = models.IntegerField(default=0)
     created_at = models.DateField(auto_now_add=True)
@@ -12,7 +12,7 @@ class Salary(models.Model):
 
 
 class Users(models.Model):
-    employee_id = models.IntegerField(null=False, default=0)
+    employee_id = models.IntegerField(default=0)
     employee = models.CharField(max_length=50,default=0)
     job_id = models.IntegerField(null=False, default=0)
     job = models.CharField(max_length=50,default=0)

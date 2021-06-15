@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import HomePage from "./Screens/HomePage";
+import PageRouter from "./PageRouter";
 
 export default class App extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <HomePage />
+        <PageRouter />
       </div>
     );
   }
