@@ -20,7 +20,7 @@ export default class PageRouter extends Component {
       <Router>
         <Route exact path="/form" component={FormPage} />
         <Route exact path="/salary" component={SalaryPage} />
-        <Route exact path="/test" component={Homescreen} />
+        <Route exact path="/" component={Homescreen} />
       </Router>
     );
   }

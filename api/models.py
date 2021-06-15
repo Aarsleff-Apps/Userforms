@@ -11,6 +11,7 @@ class Salary(models.Model):
 
 
 
+
 class Users(models.Model):
     employee_id = models.IntegerField(default=0)
     employee = models.CharField(max_length=50,default=0)
