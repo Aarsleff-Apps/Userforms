@@ -15,6 +15,7 @@ export const EditUser = (props) => {
     id: '',
     name: ''
   })
+  console.log(users)
   const history = useHistory();
   const currentUserId = props.match.params.id;
 
