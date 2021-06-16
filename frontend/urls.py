@@ -5,5 +5,7 @@ urlpatterns = [
     path('', index),
     path('form', index),
     path('salary', index),
-    path('crud', index)
+    path('crud', index),
+    path('crud/add', index),
+    path('crud/edit/<str:id>', index)
 ]

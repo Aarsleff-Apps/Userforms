@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-
-
-
+import React, { Component, useState } from "react";
+import 'bootstrap'
+import { Heading } from "../TestComponents/CRUD/Heading";
+import { UserList } from "../TestComponents/CRUD/UserList";
 
 const CRUDtest = () => {
-  
 
 
   return (
@@ -20,11 +19,10 @@ const CRUDtest = () => {
             />
           </a>
         </header>
-
         <main class="main">
           <h1 class="title">CRUD Test</h1>
-
-
+          <Heading />
+          <UserList />
         </main>
         <footer class="footer">All right reserved.</footer>
       </div>
