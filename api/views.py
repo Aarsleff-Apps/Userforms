@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Users, Salary
-from .serializers import UserSerializers, SalarySerializers
+from .models import CRUD, Users, Salary
+from .serializers import CRUDSerializers, UserSerializers, SalarySerializers
 from rest_framework import generics
 
 # Create your views here.
@@ -20,4 +20,13 @@ class SalaryView(generics.CreateAPIView):
 class SalaryListView(generics.ListAPIView):
     queryset = Salary.objects.all()
     serializer_class = SalarySerializers
+
+class CRUDListView(generics.ListAPIView):
+    queryset = CRUD.objects.all()
+    serializer_class = CRUDSerializers
+
+class CRUDView(generics.CreateAPIView):
+    queryset = CRUD.objects.all()
+    serializer_class = CRUDSerializers
+
 

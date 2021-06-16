@@ -24,6 +24,11 @@ class Users(models.Model):
     hours = models.DecimalField(max_digits=5, decimal_places=1, default=0)
     created_at = models.DateField()
 
+class CRUD(models.Model):
+    name = models.CharField(max_length=70, default=0)
+    number = models.IntegerField(default=0)
+    created_at = models.DateField(auto_now_add=True)
+
 
 
 
