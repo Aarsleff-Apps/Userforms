@@ -1,3 +1,13 @@
+import React, { Component } from "react";
+
+
+
+
+const CRUDtest = () => {
+  
+
+
+  return (
     <body>
       <div class="grid-container">
         <header class="header">
@@ -19,3 +29,7 @@
         <footer class="footer">All right reserved.</footer>
       </div>
     </body>
+  );
+};
+
+export default CRUDtest;

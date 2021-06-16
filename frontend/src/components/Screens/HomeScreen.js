@@ -32,15 +32,14 @@ const useStyles = makeStyles({
   });
 
 
-
-
-
 const Homescreen = () => {
     const classes = useStyles() 
 
         const history = useHistory();
         const formClick = () => history.push('/form');
         const salaryClick = () => history.push('/salary');
+        const crudClick = () => history.push('/crud');
+
 
   return (
     <body>
@@ -60,7 +59,7 @@ const Homescreen = () => {
             <ul class="products">
               <Button type="submit" color="primary" className={classes.btn} onClick={formClick}>Timesheet App</Button>
               <Button type="submit" color="primary" className={classes.btn} onClick={salaryClick}>Salary App</Button>
-              <Button type="submit" color="primary" className={classes.btn}>Work in Progress...</Button>
+              <Button type="submit" color="primary" className={classes.btn} onClick={crudClick}>Work in Progress...</Button>
             </ul>
         </main>
         <footer class="footer">All right reserved.</footer>

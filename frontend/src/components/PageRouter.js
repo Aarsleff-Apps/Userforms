@@ -6,6 +6,7 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
+import CRUDtest from "./Screens/CRUDtest";
 import FormPage from "./Screens/FormPage";
 import Homescreen from "./Screens/HomeScreen";
 import SalaryPage from "./Screens/SalaryPage";
@@ -20,6 +21,7 @@ export default class PageRouter extends Component {
       <Router>
         <Route exact path="/form" component={FormPage} />
         <Route exact path="/salary" component={SalaryPage} />
+        <Route exact path="/CRUD" component={CRUDtest} />
         <Route exact path="/" component={Homescreen} />
       </Router>
     );

@@ -3,9 +3,10 @@ from django.core.exceptions import ValidationError
 
 # Create your models here.
 
+
 class Salary(models.Model):
     employee_id = models.IntegerField(default=0)
-    employee = models.CharField(max_length=50,default=0)
+    employee = models.CharField(max_length=50, default=0)
     salary_weekly = models.IntegerField(default=0)
     created_at = models.DateField(auto_now_add=True)
     joining_date = models.DateField()
@@ -15,15 +16,15 @@ class Salary(models.Model):
     national_insurance = models.IntegerField(default=0)
 
 
-
-
 class Users(models.Model):
     employee_id = models.IntegerField(default=0)
-    employee = models.CharField(max_length=50,default=0)
+    employee = models.CharField(max_length=50, default=0)
     job_id = models.IntegerField(null=False, default=0)
-    job = models.CharField(max_length=50,default=0)
+    job = models.CharField(max_length=50, default=0)
     hours = models.DecimalField(max_digits=5, decimal_places=1, default=0)
     created_at = models.DateField()
+
+
 
 
     # def __str__(self):
@@ -37,4 +38,3 @@ class Users(models.Model):
     # def save(self, *args, **kwargs):
     #         self.full_clean()
     #         return super().save(*args, **kwargs)
-
