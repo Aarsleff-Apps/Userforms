@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { Formik, useFormik } from "formik";
 import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     width: "100%",
     marginTop: "5%",
     padding: "0 25%",
-    fontSize: "4rem"
+    fontSize: "4rem",
   },
   field: {
     width: "100%",
@@ -24,10 +24,9 @@ const useStyles = makeStyles({
     fontSize: "4rem",
     paddingBottom: 10,
   },
-
 });
 
-const validationSchema = salaryValidationSchema
+const validationSchema = salaryValidationSchema;
 
 const SalaryPage = () => {
   const formik = useFormik({
@@ -35,24 +34,33 @@ const SalaryPage = () => {
       employeeID: "",
       employeeName: "",
       salaryWeekly: "",
+      carAllowance: "",
+      pension: "",
+      nationalInsurance: "",
+      joiningDate: "",
+      leavingDate: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values, { setSubmitting, resetForm })=> {
+    onSubmit: (values, { setSubmitting, resetForm }) => {
       const requestOptions = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            employee_id: values.employeeID,   //the object names should match the views.py
-            employee: values.employeeName,
-            salary_weekly: values.salaryWeekly,
-            
-        })
+          employee_id: values.employeeID, //the object names should match the views.py
+          employee: values.employeeName,
+          salary_weekly: values.salaryWeekly,
+          leaving_date: values.leavingDate,
+          joining_date: values.joiningDate,
+          car_allowance: values.carAllowance,
+          national_insurance: values.nationalInsurance,
+          pension: values.pension
+        }),
       };
-       fetch('api/salary/', requestOptions)
-             .then((response) => response.json())
-             .then(resetForm())
-             .then(setSubmitting(false));
-             console.log(`submitted!!`);
+      fetch("api/salary/", requestOptions)
+        .then((response) => response.json())
+        .then(resetForm())
+        .then(setSubmitting(false));
+      console.log(`submitted!!`);
     },
   });
 
@@ -73,15 +81,14 @@ const SalaryPage = () => {
         </header>
 
         <main class="main">
-        <h1 class="title">Employee Timesheets</h1>
-        
+          <h1 class="title">Employee Timesheets</h1>
+
           <form onSubmit={formik.handleSubmit}>
             <div class={classes.fieldContainer}>
-              <div className="spacer" />
 
               <TextField
-              id="outlined-basic" 
-               variant="outlined"
+                id="outlined-basic"
+                variant="outlined"
                 className={classes.field}
                 label="Employee ID"
                 name="employeeID"
@@ -97,11 +104,10 @@ const SalaryPage = () => {
                 }
               />
 
-              <div className="spacer" />
 
               <TextField
-              id="outlined-basic" 
-              variant="outlined"
+                id="outlined-basic"
+                variant="outlined"
                 className={classes.field}
                 label="Employee Name"
                 name="employeeName"
@@ -118,23 +124,106 @@ const SalaryPage = () => {
                 }
               />
 
-              <div className="spacer" />
 
               <TextField
-              id="outlined-basic" 
-              variant="outlined"
+                id="outlined-basic"
+                variant="outlined"
                 className={classes.field}
                 label="Weekly Salary"
                 name="salaryWeekly"
                 type="text"
                 value={formik.values.salaryWeekly}
                 placeholder="2345"
-                error={formik.touched.salaryWeekly && Boolean(formik.errors.salaryWeekly)}
+                error={
+                  formik.touched.salaryWeekly &&
+                  Boolean(formik.errors.salaryWeekly)
+                }
                 onChange={formik.handleChange}
-                helperText={formik.touched.salaryWeekly && formik.errors.salaryWeekly}
+                helperText={
+                  formik.touched.salaryWeekly && formik.errors.salaryWeekly
+                }
               />
-             
+
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                className={classes.field}
+                label="Car Allowance"
+                name="carAllowance"
+                type="text"
+                value={formik.values.carAllowance}
+                placeholder="2345"
+                error={
+                  formik.touched.carAllowance &&
+                  Boolean(formik.errors.carAllowance)
+                }
+                onChange={formik.handleChange}
+                helperText={
+                  formik.touched.carAllowance && formik.errors.carAllowance
+                }
+              />
+
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                className={classes.field}
+                label="National Insurance"
+                name="nationalInsurance"
+                type="text"
+                value={formik.values.nationalInsurance}
+                placeholder="2345"
+                error={
+                  formik.touched.nationalInsurance &&
+                  Boolean(formik.errors.nationalInsurance)
+                }
+                onChange={formik.handleChange}
+                helperText={
+                  formik.touched.nationalInsurance && formik.errors.nationalInsurance
+                }
+              />
+
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                className={classes.field}
+                label="Pension"
+                name="pension"
+                type="text"
+                value={formik.values.pension}
+                placeholder="2345"
+                error={
+                  formik.touched.pension &&
+                  Boolean(formik.errors.pension)
+                }
+                onChange={formik.handleChange}
+                helperText={
+                  formik.touched.pension && formik.errors.pension
+                }
+              />
+
+              <div className="dateStyle">
+                <TextField
+                  id="outlined-basic"
+                  variant="outlined"
+                  className={classes.field}
+                  name="joiningDate"
+                  type="date"
+                  value={formik.values.joiningDate}
+                  error={formik.touched.joiningDate && Boolean(formik.errors.joiningDate)}
+                  onChange={formik.handleChange}
+                />
+                <TextField
+                  id="outlined-basic"
+                  variant="outlined"
+                  className={classes.field}
+                  name="leavingDate"
+                  type="date"
+                  value={formik.values.leavingDate}
+                  error={formik.touched.leavingDate && Boolean(formik.errors.leavingDate)}
+                  onChange={formik.handleChange}
+                />
               </div>
+            </div>
             <Button type="submit" color="primary" className={classes.btn}>
               Submit
             </Button>

@@ -34,6 +34,12 @@ const employeeValidationSchema = Yup.object({
       .max(15, "Must be 15 char or less")
       .required("Required"),
     salaryWeekly: Yup.number().required("Required"),
+    joiningDate: Yup.date().required("Required"),
+    leavingDate: Yup.date().required("Required"),
+    carAllowance: Yup.number().required("Required"),
+    pension: Yup.number().required("Required"),
+    nationalInsurance: Yup.number().required("Required"),
+
   
   });
   
