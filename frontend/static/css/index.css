@@ -59,6 +59,16 @@ body {
   text-align: center;
 }
 
+
+.addContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 20em;
+  padding-top: 2%;
+  text-align: center;
+
+}
+
 .footer {
   grid-area: footer;
   background-color: #006eb1;
@@ -82,15 +92,26 @@ nav {
   padding-top: 3%;
   background-color: #eeeeee;
   box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%);
+  margin-top: 5%;
+
+}
+
+.btnLink {
+  text-decoration: none;
+  color: black;
 }
 
 .backgroundCard {
 
   text-align: center;
-
-
 }
 
+.ml-auto {
+
+  padding-top: 2%;
+  padding-bottom: 2%;
+
+}
 
 /* Home Screen */
 
