@@ -53,7 +53,7 @@ const FormPage = () => {
           job_id: values.jobID,
           job: values.job,
           hours: values.hours,
-          created_at: values.date,
+          created_at: values.date,  
         }),
       };
 

@@ -18,4 +18,4 @@ class SalarySerializers(serializers.ModelSerializer):
 class CRUDSerializers(serializers.ModelSerializer):
     class Meta:
         model = CRUD
-        fields = ('name','number')
+        fields = ('id','name','number')

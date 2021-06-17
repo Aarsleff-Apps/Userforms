@@ -6,7 +6,8 @@ import { Form, FormGroup, Label, Input } from "reactstrap";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
-
+import { crud } from "../../Validation/ValidationSchema";
+import { useFormik } from "formik";
 const useStyles = makeStyles({
   btn: {
     border: 0,
@@ -29,24 +30,36 @@ const useStyles = makeStyles({
 });
 
 export const AddUser = () => {
+  const validationSchema = crud;
   const classes = useStyles();
   const [name, setName] = useState("");
-  const { addUser } = useContext(GlobalContext);
   const history = useHistory();
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const newUser = {
-      id: uuid(),
-      name,
-    };
-    addUser(newUser);
-    history.push("/crud");
-  };
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      number: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values, { setSubmitting, resetForm }) => {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          number: values.number,
+        }),
+      };
 
-  const onChange = (e) => {
-    setName(e.target.value);
-  };
+      fetch("http://127.0.0.1:8000/api/crud/", requestOptions)
+        .then((response) => response.json())
+        .then(resetForm())
+        .then(setSubmitting(false));
+      console.log(values);
+      console.log(`submitted!!`);
+    },
+  });
+
 
   return (
     <body>
@@ -65,29 +78,55 @@ export const AddUser = () => {
         <main class="main">
           <h1 class="title">Employee Timesheets</h1>
           <div className="addContainer">
-            <Form onSubmit={onSubmit} className="centralContainer">
-              <FormGroup >
+            <form  className="centralContainer" onSubmit={formik.handleSubmit}>
+              <FormGroup>
                 <TextField
                   id="outlined-basic"
                   variant="outlined"
                   className={classes.field}
                   type="text"
-                  value={name}
-                  onChange={onChange}
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  error={formik.touched.name && Boolean(formik.errors.name)}
                   name="name"
                   placeholder="Enter user"
+                  helperText={formik.touched.name && formik.errors.name}
+                  required
+                ></TextField>
+                <TextField
+                  id="outlined-basic"
+                  variant="outlined"
+                  className={classes.field}
+                  type="text"
+                  value={formik.values.number}
+                  onChange={formik.handleChange}
+                  error={formik.touched.number && Boolean(formik.errors.number)}
+                  name="number"
+                  placeholder="Enter number"
+                  helperText={formik.touched.number && formik.errors.number}
                   required
                 ></TextField>
               </FormGroup>
               <div className="ml-auto">
-              <Button type="submit" className={classes.btn} variant="contained"  color="primary">Submit</Button>
-              <Button className={classes.btn} variant="contained"  color="secondary">
-                <Link to="/crud" className="btnLink">
-                  Cancel
-                </Link>
-              </Button>
+                <Button
+                  type="submit"
+                  className={classes.btn}
+                  variant="contained"
+                  color="primary"
+                >
+                  Submit
+                </Button>
+                <Button
+                  className={classes.btn}
+                  variant="contained"
+                  color="secondary"
+                >
+                  <Link to="/crud" className="btnLink">
+                    Cancel
+                  </Link>
+                </Button>
               </div>
-            </Form>
+            </form>
           </div>
         </main>
         <footer class="footer">All right reserved.</footer>

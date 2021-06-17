@@ -5,6 +5,8 @@ import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Form, FormGroup, Label, Input } from "reactstrap";
+import { useFormik } from "formik";
+import { crud } from "../../Validation/ValidationSchema";
 
 const useStyles = makeStyles({
   btn: {
@@ -28,30 +30,57 @@ const useStyles = makeStyles({
 });
 
 export const EditUser = (props) => {
+  const validationSchema = crud
+  const [users, setUsers] = useState({});
   const classes = useStyles();
-  const { editUser, users } = useContext(GlobalContext);
-  const [selectedUser, setSelectedUser] = useState({
-    id: "",
-    name: "",
-  });
-  console.log(users);
   const history = useHistory();
   const currentUserId = props.match.params.id;
 
-  useEffect(() => {
-    const userId = currentUserId;
-    const selectedUser = users.find((user) => user.id === userId);
-    setSelectedUser(selectedUser);
-  }, [currentUserId, users]);
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      number: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values, { setSubmitting, resetForm }) => {
+      const requestOptions = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          number: values.number,
+        }),
+      };
+
+      fetch(`http://127.0.0.1:8000/api/crud/detailview/${currentUserId}`, requestOptions)
+        .then((response) => response.json())
+        .then(resetForm())
+        .then(setSubmitting(false));
+      console.log(values);
+      console.log(`submitted!!`);
+    },
+  });
+
+  // fetch(`http://127.0.0.1:8000/api/crud/detailview/${currentUserId}`)
+  //   .then(function (response) {
+  //     return response.json();
+  //   })
+  //   .then(function (data) {
+  //     setUsers(data);
+  //   });
+
+  const [selectedUser, setSelectedUser] = useState({
+    name: "",
+    number: "",
+  });
 
   const onChange = (e) => {
     setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    editUser(selectedUser);
+  const editUser = (id) => {
     history.push("/crud");
+    fetch(`http://127.0.0.1:8000/api/crud/detailview/${id}`, requestOptions);
   };
 
   return (
@@ -71,18 +100,36 @@ export const EditUser = (props) => {
         <main class="main">
           <h1 class="title">Employee Timesheets</h1>
           <div className="centralContainer">
-            <Form className="backgroundCard" onSubmit={onSubmit}>
+            <form
+              className="backgroundCard"
+              onSubmit={() => editUser(currentUserId)}
+              onSubmit={formik.handleSubmit}
+            >
               <FormGroup>
                 <TextField
                   id="outlined-basic"
                   variant="outlined"
                   className={classes.field}
                   type="text"
-                  value={selectedUser.name}
-                  onChange={onChange}
-                  label="Employee Name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  error={formik.touched.name && Boolean(formik.errors.name)}
                   name="name"
                   placeholder="Enter user"
+                  helperText={formik.touched.name && formik.errors.name}
+                  required
+                ></TextField>
+                <TextField
+                  id="outlined-basic"
+                  variant="outlined"
+                  className={classes.field}
+                  type="text"
+                  value={formik.values.number}
+                  onChange={formik.handleChange}
+                  error={formik.touched.number && Boolean(formik.errors.number)}
+                  name="number"
+                  placeholder="Enter number"
+                  helperText={formik.touched.number && formik.errors.number}
                   required
                 ></TextField>
               </FormGroup>
@@ -100,10 +147,12 @@ export const EditUser = (props) => {
                   variant="contained"
                   color="secondary"
                 >
-                  <Link className="btnLink" to="/crud">Cancel</Link>
+                  <Link className="btnLink" to="/crud">
+                    Cancel
+                  </Link>
                 </Button>
               </div>
-            </Form>
+            </form>
           </div>
         </main>
         <footer class="footer">All right reserved.</footer>
