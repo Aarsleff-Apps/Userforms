@@ -1,6 +1,6 @@
 from django.urls import path
-from django.conf.urls import url 
-from .views import CRUDListView, CRUDView, UserView, CreateView, SalaryView, SalaryListView, CRUDDelete, user_list, user_detail, users_detail
+from django.conf.urls import url
+from .views import CRUDListView, CRUDView, UserView, CreateView, SalaryView, SalaryListView, CRUDDelete, user_list, user_detail, users_detail, employee_details, EmployeeCreateView, EmployeeListView
 
 urlpatterns = [
     path('users/', UserView.as_view()),
@@ -12,6 +12,16 @@ urlpatterns = [
     path('crud/delete/<str:id>', CRUDDelete.as_view()),
     path('crud/del/', user_list),
     path('crud/del/<str:id>', user_detail),
-    path('crud/detailview/<int:pk>', users_detail)
+    path('crud/detailview/<int:pk>', users_detail),
+
+
+
+
+    path('employee/add', EmployeeCreateView.as_view()),
+    path('employee/list', EmployeeListView.as_view()),
+    path('employee/delete/<int:id>', employee_details),
+    path('employee/put/<int:id>', employee_details),
+
+
 
 ]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CRUD, Users, Salary
+from .models import CRUD, Users, Salary, EmployeeList
 
 
 class UserSerializers(serializers.ModelSerializer):
@@ -19,3 +19,8 @@ class CRUDSerializers(serializers.ModelSerializer):
     class Meta:
         model = CRUD
         fields = ('id','name','number')
+
+class EmployeeSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = EmployeeList
+        fields = ('id','employee_id','employee', 'department')    

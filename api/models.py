@@ -30,6 +30,13 @@ class CRUD(models.Model):
     created_at = models.DateField(auto_now_add=True)
 
 
+class EmployeeList(models.Model):
+    employee_id = models.CharField(max_length=70, default=0)
+    employee = models.CharField(max_length=70, default=0)
+    department = models.IntegerField(default=0)
+    created_at = models.DateField(auto_now_add=True)
+
+
 
 
     # def __str__(self):

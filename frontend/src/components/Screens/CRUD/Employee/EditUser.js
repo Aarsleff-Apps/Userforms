@@ -1,12 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
-import { GlobalContext } from "../../context/GlobalState";
 import { Link, useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { useFormik } from "formik";
-import { employeeListValidationSchema } from "../../Validation/ValidationSchema";
+import { employeeListValidationSchema } from "../../../Validation/ValidationSchema";
 
 const useStyles = makeStyles({
   btn: {
@@ -29,7 +28,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const EditUser = (props) => {
+export const EmployeeEditUser = (props) => {
   const validationSchema = employeeListValidationSchema;
   const [users, setUsers] = useState({});
   const classes = useStyles();
@@ -42,7 +41,7 @@ export const EditUser = (props) => {
       employee: "",
       department: "",
     },
-    validationSchema: validationSchema,
+    validationSchema: employeeListValidationSchema,
     onSubmit: (values, { setSubmitting, resetForm }) => {
       const requestOptions = {
         method: "PUT",
@@ -55,14 +54,10 @@ export const EditUser = (props) => {
       };
 
       fetch(
-        `http://127.0.0.1:8000/api/crud/detailview/${currentUserId}`,
+        `http://127.0.0.1:8000/api/employee/put/${currentUserId}`,
         requestOptions
       )
-        .then((response) => response.json())
-        .then(resetForm())
-        .then(setSubmitting(false));
-      console.log(values);
-      console.log(`submitted!!`);
+        .then(history.push('/employee'))
     },
   });
 
@@ -74,11 +69,6 @@ export const EditUser = (props) => {
 
   const onChange = (e) => {
     setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
-  };
-
-  const editUser = (id) => {
-    history.push("/crud");
-    fetch(`http://127.0.0.1:8000/api/crud/detailview/${id}`, requestOptions);
   };
 
   return (
@@ -100,7 +90,6 @@ export const EditUser = (props) => {
           <div className="centralContainer">
             <form
               className="backgroundCard"
-              onSubmit={() => editUser(currentUserId)}
               onSubmit={formik.handleSubmit}
             >
               <FormGroup>
@@ -145,14 +134,11 @@ export const EditUser = (props) => {
                   value={formik.values.department}
                   onChange={formik.handleChange}
                   error={
-                    formik.touched.department &&
-                    Boolean(formik.errors.department)
+                    formik.touched.department && Boolean(formik.errors.department)
                   }
                   name="department"
-                  placeholder="Enter Department"
-                  helperText={
-                    formik.touched.department && formik.errors.department
-                  }
+                  placeholder="Enter department Name"
+                  helperText={formik.touched.department && formik.errors.department}
                   required
                 ></TextField>
               </FormGroup>
@@ -170,7 +156,7 @@ export const EditUser = (props) => {
                   variant="contained"
                   color="secondary"
                 >
-                  <Link className="btnLink" to="/crud">
+                  <Link className="btnLink" to="/employee">
                     Cancel
                   </Link>
                 </Button>

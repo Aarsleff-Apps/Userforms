@@ -1,13 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
-import { GlobalContext } from "../../context/GlobalState";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
-import { Form, FormGroup, Label, Input } from "reactstrap";
+import { employeeListValidationSchema } from "../../../Validation/ValidationSchema";
 import { useFormik } from "formik";
-import { employeeListValidationSchema } from "../../Validation/ValidationSchema";
-
 const useStyles = makeStyles({
   btn: {
     border: 0,
@@ -29,12 +27,10 @@ const useStyles = makeStyles({
   },
 });
 
-export const EditUser = (props) => {
+export const EmployeeAddUser = () => {
   const validationSchema = employeeListValidationSchema;
-  const [users, setUsers] = useState({});
   const classes = useStyles();
   const history = useHistory();
-  const currentUserId = props.match.params.id;
 
   const formik = useFormik({
     initialValues: {
@@ -45,40 +41,23 @@ export const EditUser = (props) => {
     validationSchema: validationSchema,
     onSubmit: (values, { setSubmitting, resetForm }) => {
       const requestOptions = {
-        method: "PUT",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          employeeId: values.employeeId,
+          employee_id: values.employeeId,
           employee: values.employee,
           department: values.department,
         }),
       };
 
-      fetch(
-        `http://127.0.0.1:8000/api/crud/detailview/${currentUserId}`,
-        requestOptions
-      )
+      fetch("http://127.0.0.1:8000/api/employee/add", requestOptions)
         .then((response) => response.json())
-        .then(resetForm())
-        .then(setSubmitting(false));
-      console.log(values);
-      console.log(`submitted!!`);
+        .then(history.push("/employee"));
     },
   });
 
-  const [selectedUser, setSelectedUser] = useState({
-    employeeId: "",
-    employee: "",
-    department: "",
-  });
-
-  const onChange = (e) => {
-    setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
-  };
-
-  const editUser = (id) => {
-    history.push("/crud");
-    fetch(`http://127.0.0.1:8000/api/crud/detailview/${id}`, requestOptions);
+  const returnClick = () => {
+    history.push("/employee");
   };
 
   return (
@@ -97,12 +76,8 @@ export const EditUser = (props) => {
 
         <main class="main">
           <h1 class="title">Employee Timesheets</h1>
-          <div className="centralContainer">
-            <form
-              className="backgroundCard"
-              onSubmit={() => editUser(currentUserId)}
-              onSubmit={formik.handleSubmit}
-            >
+          <div className="addContainer">
+            <form className="centralContainer" onSubmit={formik.handleSubmit}>
               <FormGroup>
                 <TextField
                   id="outlined-basic"
@@ -149,7 +124,7 @@ export const EditUser = (props) => {
                     Boolean(formik.errors.department)
                   }
                   name="department"
-                  placeholder="Enter Department"
+                  placeholder="Enter department Name"
                   helperText={
                     formik.touched.department && formik.errors.department
                   }
@@ -158,19 +133,24 @@ export const EditUser = (props) => {
               </FormGroup>
               <div className="ml-auto">
                 <Button
-                  className={classes.btn}
                   type="submit"
+                  className={classes.btn}
                   variant="contained"
                   color="primary"
                 >
-                  Edit
+                  Submit
                 </Button>
                 <Button
                   className={classes.btn}
                   variant="contained"
                   color="secondary"
+                  onClick={returnClick}
                 >
-                  <Link className="btnLink" to="/crud">
+                  <Link
+                    to="/employee"
+                    onClick={returnClick}
+                    className="btnLink"
+                  >
                     Cancel
                   </Link>
                 </Button>

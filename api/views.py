@@ -11,11 +11,49 @@ from rest_framework.response import Response
 
 
 
-from .models import CRUD, Users, Salary
-from .serializers import CRUDSerializers, UserSerializers, SalarySerializers
+from .models import CRUD, Users, Salary, EmployeeList
+from .serializers import CRUDSerializers, UserSerializers, SalarySerializers, EmployeeSerializers
 from rest_framework import generics
 
 # Create your views here.
+
+
+class EmployeeCreateView(generics.CreateAPIView):
+    queryset = EmployeeList.objects.all()
+    serializer_class = EmployeeSerializers
+
+class EmployeeListView(generics.ListAPIView):
+    queryset = EmployeeList.objects.all()
+    serializer_class = EmployeeSerializers
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def employee_details(request, id):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        users = EmployeeList.objects.get(id=id)
+    except EmployeeList.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = EmployeeSerializers(users)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = EmployeeSerializers(users, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        users.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
