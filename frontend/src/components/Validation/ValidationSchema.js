@@ -42,5 +42,15 @@ const employeeValidationSchema = Yup.object({
 
   
   });
+
+
+  const crud = Yup.object({
+    name: Yup.string()
+      .required("Required"),
+    number: Yup.number().required("Required"),
   
-  export { employeeValidationSchema, salaryValidationSchema }
+  });
+
+  
+  
+  export { employeeValidationSchema, salaryValidationSchema , crud}

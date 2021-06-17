@@ -1,134 +1,164 @@
 /* Global Settings */
 
-html{
-    font-size: 62.5%; /* default size is 16 px * 62.5 = 10 = 1 rem */
-    box-sizing: border-box;
+html {
+  font-size: 62.5%; /* default size is 16 px * 62.5 = 10 = 1 rem */
+  box-sizing: border-box;
 }
 
-body{
-    font: 1.6rem Helvetica;
-    height: 100vh;
-    margin: 0;
-    background-color: #fafafa;
+body {
+  font: 1.6rem Helvetica;
+  height: 100vh;
+  margin: 0;
+  background-color: #fafafa;
 }
 
 .title {
-
-    color: #006eb1!important;
-    font-size: 3.56rem;
-    margin-top: 3%;
-    font-family: Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI",Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-    font-weight: 300;
-    text-align: center;
+  color: #006eb1 !important;
+  font-size: 3.56rem;
+  margin-top: 3%;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  text-decoration: none;
 }
 
-
-.grid-container{
-    display: grid;
-    grid-template-areas: 
+.grid-container {
+  display: grid;
+  grid-template-areas:
     "header"
     "main"
     "footer";
-    grid-template-columns: 1fr;
-    grid-template-rows: 5rem 1fr 5rem;
-    height: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 1fr 5rem;
+  height: 100%;
 }
 
-.header{
-    grid-area: header;
-    background-color: #fafafa;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%);
-    height: 56px;
-    overflow: hidden;
+.header {
+  grid-area: header;
+  background-color: #fafafa;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%);
+  height: 56px;
+  overflow: hidden;
+}
+
+.main {
+  grid-area: main;
+}
+
+.centralContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 20em;
+  padding-top: 2%;
+  text-align: center;
 }
 
 
-.main{
-    grid-area: main;
+.addContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 20em;
+  padding-top: 2%;
+  text-align: center;
 
 }
 
-form{
-    margin-left: auto;
-    margin-right: auto;
-    width: 20em;
-    padding-top: 2%;
+.footer {
+  grid-area: footer;
+  background-color: #006eb1;
+  color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.card {
+  padding-top: 3%;
+  background-color: #eeeeee;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%);
+  margin-top: 5%;
 
 }
 
-.footer{
-    grid-area: footer;
-    background-color: #006eb1;
-    color: #ffffff;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.btnLink {
+  text-decoration: none;
+  color: black;
 }
 
+.backgroundCard {
+
+  text-align: center;
+}
+
+.ml-auto {
+
+  padding-top: 2%;
+  padding-bottom: 2%;
+
+}
 
 /* Home Screen */
 
-.products{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+.products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.products li{
-    list-style-type: none;
-    padding: 0;
-    flex: 0 1 34rem;
-    margin: 1rem;
-    height: 50rem;
-    border: .3rem #c0c0c0 solid;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 50rem;
-
+.products li {
+  list-style-type: none;
+  padding: 0;
+  flex: 0 1 34rem;
+  margin: 1rem;
+  height: 50rem;
+  border: 0.3rem #c0c0c0 solid;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50rem;
 }
 
-.product{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
-.product-name{
-    font-size: 2rem;
-    font-weight: bold;
-
+.product-name {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-.product-brand{
-    font-size: 1.4rem;
-    color: #808080;
-
+.product-brand {
+  font-size: 1.4rem;
+  color: #808080;
 }
 
-.product-price{
-    font-size: 2rem;
-    font-weight: bold;
+.product-price {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-.product-image{
-    max-width: 34rem;
-    max-height: 34rem;
+.product-image {
+  max-width: 34rem;
+  max-height: 34rem;
 }
-
-
-
 
 /* Sidebar */
-

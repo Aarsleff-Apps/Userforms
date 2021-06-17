@@ -45,7 +45,7 @@ const Homescreen = () => {
     <body>
       <div class="grid-container">
         <header class="header">
-          <a href="https://www.aarsleff.co.uk/">
+          <a href="/">
             <img
               class="logo"
               src="https://forms.aarsleff.co.uk/images/Logo.png?v=gNMJrA7Q8A"
