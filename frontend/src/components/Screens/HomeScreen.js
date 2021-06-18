@@ -39,6 +39,7 @@ const Homescreen = () => {
         const formClick = () => history.push('/form');
         const salaryClick = () => history.push('/salary');
         const crudClick = () => history.push('/employee');
+        const jobClick = () => history.push('/job');
 
   return (
     <body>
@@ -59,6 +60,7 @@ const Homescreen = () => {
               <Button type="submit" color="primary" className={classes.btn} onClick={formClick}>Timesheet App</Button>
               <Button type="submit" color="primary" className={classes.btn} onClick={salaryClick}>Salary App</Button>
               <Button type="submit" color="primary" className={classes.btn} onClick={crudClick}>Employee Management</Button>
+              <Button type="submit" color="primary" className={classes.btn} onClick={jobClick}>Job Management</Button>
             </ul>
         </main>
         <footer class="footer">All right reserved.</footer>

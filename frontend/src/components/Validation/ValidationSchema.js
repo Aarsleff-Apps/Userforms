@@ -50,4 +50,9 @@ const employeeListValidationSchema = Yup.object({
   department: Yup.string().required("Required"),
 });
 
-export { employeeValidationSchema, salaryValidationSchema, employeeListValidationSchema, crud };
+const jobListValidationSchema = Yup.object({
+  jobId: Yup.string().required("Required"),
+  job: Yup.string().required("Required"),
+});
+
+export { employeeValidationSchema, salaryValidationSchema, employeeListValidationSchema, crud, jobListValidationSchema };

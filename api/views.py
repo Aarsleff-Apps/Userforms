@@ -11,12 +11,48 @@ from rest_framework.response import Response
 
 
 
-from .models import CRUD, Users, Salary, EmployeeList
-from .serializers import CRUDSerializers, UserSerializers, SalarySerializers, EmployeeSerializers
+from .models import CRUD, Users, Salary, EmployeeList, JobList
+from .serializers import CRUDSerializers, UserSerializers, SalarySerializers, EmployeeSerializers, JobSerializers
 from rest_framework import generics
 
 # Create your views here.
 
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def job_details(request, id):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        users = JobList.objects.get(id=id)
+    except JobList.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = JobSerializers(users)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = JobSerializers(users, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        users.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+class JobCreateView(generics.CreateAPIView):
+    queryset = JobList.objects.all()
+    serializer_class = JobSerializers
+
+class JobListView(generics.ListAPIView):
+    queryset = JobList.objects.all()
+    serializer_class = JobSerializers
 
 class EmployeeCreateView(generics.CreateAPIView):
     queryset = EmployeeList.objects.all()

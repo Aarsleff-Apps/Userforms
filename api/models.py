@@ -36,6 +36,11 @@ class EmployeeList(models.Model):
     department = models.IntegerField(default=0)
     created_at = models.DateField(auto_now_add=True)
 
+class JobList(models.Model):
+    job_id = models.CharField(max_length=70, default=0)
+    job = models.CharField(max_length=70, default=0)
+    created_at = models.DateField(auto_now_add=True)
+
 
 
 

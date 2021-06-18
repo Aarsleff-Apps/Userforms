@@ -20,7 +20,7 @@ const EmployeeManagement = () => {
         </header>
 
         <main class="main">
-          <h1 class="title">Employee Timesheets</h1>
+          <h1 class="title">Employee Management</h1>
           <div className="centralContainer">
             <EmployeeHeading />
             <EmployeeList />

@@ -1,6 +1,6 @@
 from django.urls import path
 from django.conf.urls import url
-from .views import CRUDListView, CRUDView, UserView, CreateView, SalaryView, SalaryListView, CRUDDelete, user_list, user_detail, users_detail, employee_details, EmployeeCreateView, EmployeeListView
+from .views import CRUDListView, CRUDView, UserView, CreateView, SalaryView, SalaryListView, CRUDDelete, user_list, user_detail, users_detail, employee_details, EmployeeCreateView, EmployeeListView, EmployeeList, JobCreateView, JobListView, job_details
 
 urlpatterns = [
     path('users/', UserView.as_view()),
@@ -21,6 +21,13 @@ urlpatterns = [
     path('employee/list', EmployeeListView.as_view()),
     path('employee/delete/<int:id>', employee_details),
     path('employee/put/<int:id>', employee_details),
+
+
+    path('job/add', JobCreateView.as_view()),
+    path('job/list', JobListView.as_view()),
+    path('job/delete/<int:id>', job_details),
+    path('job/put/<int:id>', job_details),
+
 
 
 
