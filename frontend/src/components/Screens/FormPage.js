@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Formik, useFormik } from "formik";
 import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
@@ -31,7 +31,42 @@ const validationSchema = employeeValidationSchema;
 const test = ["9991", "28888", "38888", "47777"];
 const name = "employeeID";
 
+
+
+
+
+
+
 const FormPage = () => {
+
+
+
+
+  const [users, setUsers] = useState({});
+  const userList = []
+
+  const userMap = () => {users.length > 0 ? (
+    users.map((user) => (userList.push(user.employee)))): console.log('Not loaded yet')}
+
+  useEffect(() => {
+    let loadCounter = 0;
+    if (loadCounter === 0){
+      fetch("http://127.0.0.1:8000/api/employee/list")
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setUsers(data);
+      })
+    }
+    loadCounter += 1;
+    
+  }, []);
+
+console.log(userList)
+
+
+
   const formik = useFormik({
     initialValues: {
       employeeID: "",
@@ -66,9 +101,14 @@ const FormPage = () => {
     },
   });
   const classes = useStyles();
+  
+  const userArray = () => {
+    console.log(users)
+  }
 
   return (
     <body>
+      {userMap()}
       <div class="grid-container">
         <header class="header">
           <a href="/">
@@ -89,7 +129,7 @@ const FormPage = () => {
               <div className="spacer" />
 
               <DropDown
-                data={test}
+                data={userList}
                 name={name}
                 handleChange={formik.handleChange}
               />
