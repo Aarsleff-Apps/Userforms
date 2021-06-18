@@ -91,95 +91,95 @@ const FormPage = () => {
   const classes = useStyles();
 
   return (
-      <div class="grid-container">
-        <header class="header">
-          <a href="/">
-            <img
-              class="logo"
-              src="https://forms.aarsleff.co.uk/images/Logo.png?v=gNMJrA7Q8A"
-              width="92px"
-              height="51px"
-            />
-          </a>
-        </header>
+    <div class="grid-container">
+      <header class="header">
+        <a href="/">
+          <img
+            class="logo"
+            src="https://forms.aarsleff.co.uk/images/Logo.png?v=gNMJrA7Q8A"
+            width="92px"
+            height="51px"
+          />
+        </a>
+      </header>
 
-        <main class="main">
-          <h1 class="title">Employee Timesheets</h1>
+      <main class="main">
+        <h1 class="title">Employee Timesheets</h1>
 
-          <form className="centralContainer" onSubmit={formik.handleSubmit}>
-            <div class={classes.fieldContainer}>
-              <div className="spacer" />
+        <form className="centralContainer" onSubmit={formik.handleSubmit}>
+          <div class={classes.fieldContainer}>
+            <div className="spacer" />
 
-              {users && (
-                <DropDown
-                  data={users.map(({ employee_id }) => employee_id)}
-                  name={userId}
-                  handleChange={formik.handleChange}
-                />
-              )}
+            {users && (
+              <DropDown
+                data={users.map(({ employee_id }) => employee_id)}
+                name={userId}
+                handleChange={formik.handleChange}
+              />
+            )}
 
-              <div className="spacer" />
+            <div className="spacer" />
 
-              {users && (
-                <DropDown
-                  data={users.map(({ employee }) => employee)}
-                  name={userName}
-                  handleChange={formik.handleChange}
-                />
-              )}
+            {users && (
+              <DropDown
+                data={users.map(({ employee }) => employee)}
+                name={userName}
+                handleChange={formik.handleChange}
+              />
+            )}
 
-              <div className="dateStyle">
-                <TextField
-                  id="outlined-basic"
-                  variant="outlined"
-                  className={classes.field}
-                  name="date"
-                  type="date"
-                  value={formik.values.date}
-                  error={formik.touched.date && Boolean(formik.errors.date)}
-                  onChange={formik.handleChange}
-                />
-              </div>
-
-              {jobs && (
-                <DropDown
-                  data={jobs.map(({ job_id }) => job_id)}
-                  name={jobId}
-                  handleChange={formik.handleChange}
-                />
-              )}
-
-              {jobs && (
-                <DropDown
-                  data={jobs.map(({ job }) => job)}
-                  name={jobName}
-                  handleChange={formik.handleChange}
-                />
-              )}
-
-              <div className="spacer" />
+            <div className="dateStyle">
               <TextField
                 id="outlined-basic"
                 variant="outlined"
                 className={classes.field}
-                label="Hours"
-                name="hours"
-                type="text"
-                value={formik.values.hours}
-                placeholder="8"
-                error={formik.touched.hours && Boolean(formik.errors.hours)}
+                name="date"
+                type="date"
+                value={formik.values.date}
+                error={formik.touched.date && Boolean(formik.errors.date)}
                 onChange={formik.handleChange}
-                helperText={formik.touched.hours && formik.errors.hours}
               />
-              <div className="spacer" />
             </div>
-            <Button type="submit" color="primary" className={classes.btn}>
-              Submit
-            </Button>
-          </form>
-        </main>
-        <footer class="footer">All right reserved.</footer>
-      </div>
+
+            {jobs && (
+              <DropDown
+                data={jobs.map(({ job_id }) => job_id)}
+                name={jobId}
+                handleChange={formik.handleChange}
+              />
+            )}
+
+            {jobs && (
+              <DropDown
+                data={jobs.map(({ job }) => job)}
+                name={jobName}
+                handleChange={formik.handleChange}
+              />
+            )}
+
+            <div className="spacer" />
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+              className={classes.field}
+              label="Hours"
+              name="hours"
+              type="text"
+              value={formik.values.hours}
+              placeholder="8"
+              error={formik.touched.hours && Boolean(formik.errors.hours)}
+              onChange={formik.handleChange}
+              helperText={formik.touched.hours && formik.errors.hours}
+            />
+            <div className="spacer" />
+          </div>
+          <Button type="submit" color="primary" className={classes.btn}>
+            Submit
+          </Button>
+        </form>
+      </main>
+      <footer class="footer">All right reserved.</footer>
+    </div>
   );
 };
 
