@@ -46,7 +46,7 @@ export const JobHeading = () => {
   const classes = useStyles() 
 
   const history = useHistory();
-  const addClick = () => history.push('/employee/add');
+  const addClick = () => history.push('/job/add');
 
 
 {

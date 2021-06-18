@@ -83,7 +83,7 @@ export const EditJob = (props) => {
         </header>
 
         <main class="main">
-          <h1 class="title">job Timesheets</h1>
+          <h1 class="title">Edit Job</h1>
           <div className="centralContainer">
             <form
               className="backgroundCard"

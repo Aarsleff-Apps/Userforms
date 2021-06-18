@@ -73,7 +73,7 @@ export const AddJob = () => {
         </header>
 
         <main class="main">
-          <h1 class="title">job Timesheets</h1>
+          <h1 class="title">Add Job</h1>
           <div className="addContainer">
             <form className="centralContainer" onSubmit={formik.handleSubmit}>
               <FormGroup>

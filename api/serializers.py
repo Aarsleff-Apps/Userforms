@@ -22,7 +22,7 @@ class CRUDSerializers(serializers.ModelSerializer):
 
 class EmployeeSerializers(serializers.ModelSerializer):
     class Meta:
-        model = JobList
+        model = EmployeeList
         fields = ('id','employee_id','employee', 'department')
 
 class JobSerializers(serializers.ModelSerializer):
