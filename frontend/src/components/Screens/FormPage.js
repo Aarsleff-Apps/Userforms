@@ -34,71 +34,28 @@ const jobId = "jobID";
 const jobName = "job";
 
 const FormPage = () => {
-  const [users, setUsers] = useState({});
-  const userIDs = [];
-  const userNames = [];
-
-  const [jobs, setjobs] = useState({});
-  const jobIDs = [];
-  const jobNames = [];
-
-  const jobIdMap = () => {
-    jobs.length > 0
-      ? jobs.map((user) => jobIDs.push(user.job_id))
-      : console.log("Not loaded yet");
-  };
-
-  const jobNameMap = () => {
-    jobs.length > 0
-      ? jobs.map((user) => jobNames.push(user.job))
-      : console.log("Not loaded yet");
-  };
-
-  const userIdMap = () => {
-    users.length > 0
-      ? users.map((user) => userIDs.push(user.employee_id))
-      : console.log("Not loaded yet");
-  };
-
-  const userNameMap = () => {
-    users.length > 0
-      ? users.map((user) => userNames.push(user.employee))
-      : console.log("Not loaded yet");
-  };
+  const [users, setUsers] = useState([]);
+  const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    let loadCounter = 0;
-    if (loadCounter === 0) {
-      fetch("http://127.0.0.1:8000/api/job/list")
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          setjobs(data);
-          console.log("egg");
-        });
-    }
-    loadCounter += 1;
-    console.log(loadCounter);
+    fetch("http://127.0.0.1:8000/api/job/list")
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setJobs(data);
+      });
   }, []);
 
   useEffect(() => {
-    let loadCounter = 0;
-    if (loadCounter === 0) {
-      fetch("http://127.0.0.1:8000/api/employee/list")
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          setUsers(data);
-          console.log(data);
-        });
-    }
-    loadCounter += 1;
+    fetch("http://127.0.0.1:8000/api/employee/list")
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setUsers(data);
+      });
   }, []);
-
-  console.log(userIDs);
-  console.log(userNames);
 
   const formik = useFormik({
     initialValues: {
@@ -129,22 +86,11 @@ const FormPage = () => {
         .then((response) => response.json())
         .then(resetForm())
         .then(setSubmitting(false));
-      console.log(values);
-      console.log(`submitted!!`);
     },
   });
   const classes = useStyles();
 
-  const userArray = () => {
-    console.log(users);
-  };
-
   return (
-    <body>
-      {userIdMap()}
-      {userNameMap()}
-      {jobIdMap()}
-      {jobNameMap()}
       <div class="grid-container">
         <header class="header">
           <a href="/">
@@ -164,19 +110,23 @@ const FormPage = () => {
             <div class={classes.fieldContainer}>
               <div className="spacer" />
 
-              <DropDown
-                data={userIDs}
-                name={userId}
-                handleChange={formik.handleChange}
-              />
+              {users && (
+                <DropDown
+                  data={users.map(({ employee_id }) => employee_id)}
+                  name={userId}
+                  handleChange={formik.handleChange}
+                />
+              )}
 
               <div className="spacer" />
 
-              <DropDown
-                data={userNames}
-                name={userName}
-                handleChange={formik.handleChange}
-              />
+              {users && (
+                <DropDown
+                  data={users.map(({ employee }) => employee)}
+                  name={userName}
+                  handleChange={formik.handleChange}
+                />
+              )}
 
               <div className="dateStyle">
                 <TextField
@@ -191,17 +141,21 @@ const FormPage = () => {
                 />
               </div>
 
-              <DropDown
-                data={jobIDs}
-                name={jobId}
-                handleChange={formik.handleChange}
-              />
+              {jobs && (
+                <DropDown
+                  data={jobs.map(({ job_id }) => job_id)}
+                  name={jobId}
+                  handleChange={formik.handleChange}
+                />
+              )}
 
-              <DropDown
-                data={jobNames}
-                name={jobName}
-                handleChange={formik.handleChange}
-              />
+              {jobs && (
+                <DropDown
+                  data={jobs.map(({ job }) => job)}
+                  name={jobName}
+                  handleChange={formik.handleChange}
+                />
+              )}
 
               <div className="spacer" />
               <TextField
@@ -226,7 +180,6 @@ const FormPage = () => {
         </main>
         <footer class="footer">All right reserved.</footer>
       </div>
-    </body>
   );
 };
 
