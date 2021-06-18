@@ -19,6 +19,7 @@ import EmployeeManagement from "./Screens/CRUD/Employee/EmployeeManagement";
 import JobManagement from "./Screens/CRUD/Jobs/JobManagement";
 import { AddJob } from "./Screens/CRUD/Jobs/AddJob";
 import { EditJob } from "./Screens/CRUD/Jobs/EditJob";
+import Export from "./Screens/Export";
 
 export default class PageRouter extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class PageRouter extends Component {
           <Route exact path="/job" component={JobManagement} />
           <Route exact path="/job/add" component={AddJob} />
           <Route exact path="/job/edit/:id" component={EditJob} />
+          <Route exact path="/export" component={Export} />
           <Route exact path="/crud" component={CRUDtest} />
           <Route exact path="/crud/add" component={AddUser} />
           <Route exact path="/crud/edit/:id" component={EditUser} />

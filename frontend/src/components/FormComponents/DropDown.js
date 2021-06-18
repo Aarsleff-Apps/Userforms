@@ -15,7 +15,15 @@ const useStyles = makeStyles((theme) => ({
     height: "25%",
     fontSize: 50,
     paddingBottom: 10,
+    textAlign: "center",
   },
+  labelSize:{
+    textAlign: "left",
+  },
+  itemSelect:{
+    fontSize: "3rem"
+  },
+  
 }));
 
 export default function DropDown(props) {
@@ -40,11 +48,12 @@ export default function DropDown(props) {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="itemSelect-label">{props.name}</InputLabel>
+        <InputLabel id={classes.itemSelect}>{props.name}</InputLabel>
         <Select
+          className ={classes.labelSize}
           id="outlined-basic" 
           variant="outlined"
-          labelId="itemSelect-label"
+          labelId={classes.itemSelect}
           name={props.name}
           open={open}
           onClose={handleClose}

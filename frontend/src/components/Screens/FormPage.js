@@ -28,44 +28,77 @@ const useStyles = makeStyles({
 });
 
 const validationSchema = employeeValidationSchema;
-const test = ["9991", "28888", "38888", "47777"];
-const name = "employeeID";
-
-
-
-
-
-
+const userId = "employeeID";
+const userName = "employeeName";
+const jobId = "jobID";
+const jobName = "job";
 
 const FormPage = () => {
-
-
-
-
   const [users, setUsers] = useState({});
-  const userList = []
+  const userIDs = [];
+  const userNames = [];
 
-  const userMap = () => {users.length > 0 ? (
-    users.map((user) => (userList.push(user.employee)))): console.log('Not loaded yet')}
+  const [jobs, setjobs] = useState({});
+  const jobIDs = [];
+  const jobNames = [];
+
+  const jobIdMap = () => {
+    jobs.length > 0
+      ? jobs.map((user) => jobIDs.push(user.job_id))
+      : console.log("Not loaded yet");
+  };
+
+  const jobNameMap = () => {
+    jobs.length > 0
+      ? jobs.map((user) => jobNames.push(user.job))
+      : console.log("Not loaded yet");
+  };
+
+  const userIdMap = () => {
+    users.length > 0
+      ? users.map((user) => userIDs.push(user.employee_id))
+      : console.log("Not loaded yet");
+  };
+
+  const userNameMap = () => {
+    users.length > 0
+      ? users.map((user) => userNames.push(user.employee))
+      : console.log("Not loaded yet");
+  };
 
   useEffect(() => {
     let loadCounter = 0;
-    if (loadCounter === 0){
-      fetch("http://127.0.0.1:8000/api/employee/list")
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        setUsers(data);
-      })
+    if (loadCounter === 0) {
+      fetch("http://127.0.0.1:8000/api/job/list")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          setjobs(data);
+          console.log("egg");
+        });
     }
     loadCounter += 1;
-    
+    console.log(loadCounter);
   }, []);
 
-console.log(userList)
+  useEffect(() => {
+    let loadCounter = 0;
+    if (loadCounter === 0) {
+      fetch("http://127.0.0.1:8000/api/employee/list")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          setUsers(data);
+          console.log(data);
+        });
+    }
+    loadCounter += 1;
+  }, []);
 
-
+  console.log(userIDs);
+  console.log(userNames);
 
   const formik = useFormik({
     initialValues: {
@@ -88,27 +121,30 @@ console.log(userList)
           job_id: values.jobID,
           job: values.job,
           hours: values.hours,
-          created_at: values.date,  
+          created_at: values.date,
         }),
       };
 
       fetch("api/create/", requestOptions)
         .then((response) => response.json())
-        //  .then(resetForm())
+        .then(resetForm())
         .then(setSubmitting(false));
       console.log(values);
       console.log(`submitted!!`);
     },
   });
   const classes = useStyles();
-  
+
   const userArray = () => {
-    console.log(users)
-  }
+    console.log(users);
+  };
 
   return (
     <body>
-      {userMap()}
+      {userIdMap()}
+      {userNameMap()}
+      {jobIdMap()}
+      {jobNameMap()}
       <div class="grid-container">
         <header class="header">
           <a href="/">
@@ -129,61 +165,44 @@ console.log(userList)
               <div className="spacer" />
 
               <DropDown
-                data={userList}
-                name={name}
+                data={userIDs}
+                name={userId}
                 handleChange={formik.handleChange}
               />
 
               <div className="spacer" />
 
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                className={classes.field}
-                label="Employee Name"
-                name="employeeName"
-                type="text"
-                value={formik.values.employeeName}
-                placeholder="2345"
-                error={
-                  formik.touched.employeeName &&
-                  Boolean(formik.errors.employeeName)
-                }
-                onChange={formik.handleChange}
-                helperText={
-                  formik.touched.employeeName && formik.errors.employeeName
-                }
+              <DropDown
+                data={userNames}
+                name={userName}
+                handleChange={formik.handleChange}
               />
 
-              <div className="spacer" />
+              <div className="dateStyle">
+                <TextField
+                  id="outlined-basic"
+                  variant="outlined"
+                  className={classes.field}
+                  name="date"
+                  type="date"
+                  value={formik.values.date}
+                  error={formik.touched.date && Boolean(formik.errors.date)}
+                  onChange={formik.handleChange}
+                />
+              </div>
 
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                className={classes.field}
-                label="Job ID"
-                name="jobID"
-                type="text"
-                value={formik.values.jobID}
-                placeholder="2345"
-                error={formik.touched.jobID && Boolean(formik.errors.jobID)}
-                onChange={formik.handleChange}
-                helperText={formik.touched.jobID && formik.errors.jobID}
+              <DropDown
+                data={jobIDs}
+                name={jobId}
+                handleChange={formik.handleChange}
               />
-              <div className="spacer" />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                className={classes.field}
-                label="Job Name"
-                name="job"
-                type="text"
-                value={formik.values.job}
-                placeholder="Geo"
-                error={formik.touched.job && Boolean(formik.errors.job)}
-                onChange={formik.handleChange}
-                helperText={formik.touched.job && formik.errors.job}
+
+              <DropDown
+                data={jobNames}
+                name={jobName}
+                handleChange={formik.handleChange}
               />
+
               <div className="spacer" />
               <TextField
                 id="outlined-basic"
@@ -199,19 +218,6 @@ console.log(userList)
                 helperText={formik.touched.hours && formik.errors.hours}
               />
               <div className="spacer" />
-
-              <div className="dateStyle">
-                <TextField
-                  id="outlined-basic"
-                  variant="outlined"
-                  className={classes.field}
-                  name="date"
-                  type="date"
-                  value={formik.values.date}
-                  error={formik.touched.date && Boolean(formik.errors.date)}
-                  onChange={formik.handleChange}
-                />
-              </div>
             </div>
             <Button type="submit" color="primary" className={classes.btn}>
               Submit

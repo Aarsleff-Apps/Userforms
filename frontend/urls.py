@@ -16,5 +16,7 @@ urlpatterns = [
 
     path('crud', index),
     path('crud/add', index),
-    path('crud/edit/<str:id>', index)
+    path('crud/edit/<str:id>', index),
+
+    path('export', index),
 ]

@@ -54,11 +54,11 @@ const Homescreen = () => {
             />
           </a>
         </header>
-
+    
         <main class="main">
             <ul class="products">
-              <Button type="submit" color="primary" className={classes.btn} onClick={formClick}>Timesheet App</Button>
-              <Button type="submit" color="primary" className={classes.btn} onClick={salaryClick}>Salary App</Button>
+              <Button type="submit" color="primary" className={classes.btn} onClick={formClick}>Timesheet</Button>
+              <Button type="submit" color="primary" className={classes.btn} onClick={salaryClick}>Cost Form</Button>
               <Button type="submit" color="primary" className={classes.btn} onClick={crudClick}>Employee Management</Button>
               <Button type="submit" color="primary" className={classes.btn} onClick={jobClick}>Job Management</Button>
             </ul>
