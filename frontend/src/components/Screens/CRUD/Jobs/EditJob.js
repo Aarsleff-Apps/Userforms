@@ -5,7 +5,7 @@ import { TextField } from "@material-ui/core";
 import { FormGroup } from "reactstrap";
 import { useFormik } from "formik";
 import { jobListValidationSchema } from "../../../Validation/ValidationSchema";
-import { useStyles } from "../../styling";
+import { useStyles } from "../../../services/styling";
 
 export const EditJob = (props) => {
   const classes = useStyles();

@@ -1,34 +1,24 @@
-import React, { Component, useState, useEffect } from "react";
-import { Formik, useFormik } from "formik";
+import React, { useState, useEffect } from "react";
+import { useFormik } from "formik";
 import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
 import { employeeValidationSchema } from "../Validation/ValidationSchema";
 import DropDown from "../FormComponents/DropDown";
-import { useStyles } from "./styling";
+import { useStyles } from "../services/styling";
+import { getCategoryList } from "../services/APIFunctions";
 
-const FormPage = () => {
-  const [users, setUsers] = useState([]);
+const TimePage = () => {
+  const [people, setPeople] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const classes = useStyles();
+
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/job/list")
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        setJobs(data);
-      });
+    getCategoryList("employee", setPeople);
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/employee/list")
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        setUsers(data);
-      });
+    getCategoryList("job", setJobs);
   }, []);
 
   const formik = useFormik({
@@ -62,7 +52,6 @@ const FormPage = () => {
         .then(setSubmitting(false));
     },
   });
-  const classes = useStyles();
 
   return (
     <main class="main">
@@ -72,9 +61,9 @@ const FormPage = () => {
         <div class={classes.fieldContainer}>
           <div className="spacer" />
 
-          {users && (
+          {people && (
             <DropDown
-              data={users.map(({ employee_id }) => employee_id)}
+              data={people.map(({ employee_id }) => employee_id)}
               name="employeeID"
               handleChange={formik.handleChange}
             />
@@ -82,9 +71,9 @@ const FormPage = () => {
 
           <div className="spacer" />
 
-          {users && (
+          {people && (
             <DropDown
-              data={users.map(({ employee }) => employee)}
+              data={people.map(({ employee }) => employee)}
               name="employeeName"
               handleChange={formik.handleChange}
             />
@@ -143,4 +132,4 @@ const FormPage = () => {
   );
 };
 
-export default FormPage;
+export default TimePage;

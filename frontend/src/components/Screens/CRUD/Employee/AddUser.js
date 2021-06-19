@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { employeeListValidationSchema } from "../../../Validation/ValidationSchema";
 import { useFormik } from "formik";
-import { useStyles } from "../../styling";
+import { useStyles } from "../../../services/styling";
 
 export const EmployeeAddUser = () => {
   const classes = useStyles();

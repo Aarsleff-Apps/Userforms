@@ -1,23 +1,17 @@
-import React, { Component, useState, useEffect } from "react";
-import { Formik, useFormik } from "formik";
+import React, { useState, useEffect } from "react";
+import { useFormik } from "formik";
 import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
 import { salaryValidationSchema } from "../Validation/ValidationSchema";
 import DropDown from "../FormComponents/DropDown";
-import { useStyles } from "./styling";
+import { useStyles } from "../services/styling";
+import { getCategoryList } from "../services/APIFunctions";
 
 const SalaryPage = () => {
   const [people, setPeople] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/employee/list")
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        setPeople(data);
-      });
+    getCategoryList("employee", setPeople);
   }, []);
 
   const formik = useFormik({

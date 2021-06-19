@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router";
-import { useStyles } from "../../styling";
+import { useStyles } from "../../../services/styling";
 
 export const EmployeeHeading = () => {
   const classes = useStyles();
