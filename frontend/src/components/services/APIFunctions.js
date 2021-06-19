@@ -1,12 +1,11 @@
-import axios from "axios"
+const getCategoryList = (category, setFunc) => {
+  fetch(`http://127.0.0.1:8000/api/${category}/list`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      setFunc(data);
+    });
+}
 
-async function fetchData() {
-    try {
-      const result = await axios.get("/api/crud/list")
-      console.log(result.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-export { fetchData }
+export { getCategoryList }

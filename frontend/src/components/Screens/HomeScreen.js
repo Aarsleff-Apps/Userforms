@@ -42,19 +42,7 @@ const Homescreen = () => {
         const jobClick = () => history.push('/job');
 
   return (
-    <body>
-      <div class="grid-container">
-        <header class="header">
-          <a href="/">
-            <img
-              class="logo"
-              src="https://forms.aarsleff.co.uk/images/Logo.png?v=gNMJrA7Q8A"
-              width="92px"
-              height="51px"
-            />
-          </a>
-        </header>
-    
+   
         <main class="main">
             <ul class="products">
               <Button type="submit" color="primary" className={classes.btn} onClick={formClick}>Timesheet</Button>
@@ -63,9 +51,6 @@ const Homescreen = () => {
               <Button type="submit" color="primary" className={classes.btn} onClick={jobClick}>Job Management</Button>
             </ul>
         </main>
-        <footer class="footer">All right reserved.</footer>
-      </div>
-    </body>
   );
 };
 
