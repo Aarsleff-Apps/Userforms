@@ -19,9 +19,11 @@ export const JobList = () => {
   }, []);
 
   const deleteJob = (id) => {
-    fetch(`http://127.0.0.1:8000/api/employee/delete/${id}`, requestOptions);
+    fetch(`http://127.0.0.1:8000/api/job/delete/${id}`, requestOptions);
     getCategoryList("job", setJobs);
   };
+
+  
 
   return (
     <div className="centralContainer">
